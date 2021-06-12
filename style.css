@@ -93,3 +93,9 @@ main {
 .lh-tight {
     line-height: 1.25;
 }
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #741b81;
+}
