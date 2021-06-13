@@ -284,25 +284,42 @@
                     <div class="row mt-4">
                         <div class="col p-2 mt-2">
 
-
+                            <h1 id="trustedOrNot"></h1>
                             <h2>Total Trust Score: <span id="trust_index"></span> </h2>
                             <p class="results" id="trust_index_results"></p>
 
                         </div>
                     </div>
 
-                    <div class="row mt-4">
-                        <div class="col p-2 mt-2">
 
-                            <canvas id="trustIndexChart" width="300" height="300"></canvas>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col p-2 mt-2">
 
 
-                        </div>
+                        <canvas id="trustIndexPie" width="300" height="300"></canvas>
+
+
                     </div>
+                </div>
+
+
+                <div class="row mt-4">
+                    <div class="col p-2 mt-2">
+
+
+                        <canvas id="trustIndexChart" width="300" height="300"></canvas>
+
+
+                    </div>
+                </div>
 
 
 
-                    <!--  <div class="row mt-4">
+
+
+                <!--  <div class="row mt-4">
                         <div class="col-3 p-2 mt-2">
                             <h2>Satire or parody</h2>
                             <p>Satire or parody is where the information has the potential to fool and may be misinterpreted as fact. Satire does not necessarily cause harm as it takes stories from news sources and uses ridicule and sarcasm. Parodies focus
@@ -349,7 +366,7 @@
 
 
 
-                </div>
+
 
 
 
@@ -465,6 +482,8 @@
         const author_score_label = "Author: ";
         const platform_score_label = "Publisher: ";
         const space = " ";
+        const trustedNews = "This article is trustworthy"
+        const caustionNews = "WARNING: This article may not be trustworthy."
 
         // Example results output - this would be populated by the database or API
         // API data in still needs to be done, but this ensures the outputs are all working. 
@@ -544,7 +563,54 @@
                 }
             }
         });
+
+
+        // PIE CHARTS FOR TOTAL TRUTH INDEX SCORE
+
+        let truthIndexOutput = document.getElementById('trustIndexPie');
+
+        const data = {
+            labels: [
+                'News Article Total Score out of 600',
+                '100% Trusted'
+            ],
+            datasets: [{
+                label: 'Total Trust Score',
+                data: [trust_index, maxScore],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)'
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        var myPieChart = new Chart(truthIndexOutput, {
+            type: 'bar',
+            data: data
+        })
+
+
+        //if (window.myPieChart instanceof Chart) {
+        //      window.myPieChart.destroy();
+        // }
+
+        // This function checks to see if the results are greater than 500m if so then returns trusted var if not, then untrusted varaible. This can now be broadened out
+        function displayResults(a) {
+            let resultsInternal;
+            if (a > 500) {
+                resultsInternal = trustedNews;
+            } else {
+                resultsInternal = caustionNews;
+            }
+            return resultsInternal
+        }
+
+        console.log(displayResults(trust_index));
+
+        document.getElementById("trustedOrNot").innerHTML = displayResults(trust_index);
     </script>
+
 
 
 
