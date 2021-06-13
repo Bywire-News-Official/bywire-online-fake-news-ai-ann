@@ -12,7 +12,6 @@ main {
     flex-wrap: nowrap;
     height: 100vh;
     height: -webkit-fill-available;
-    max-height: 100vh;
     overflow-x: auto;
     overflow-y: hidden;
 }
@@ -98,4 +97,38 @@ main {
 .nav-pills .show>.nav-link {
     color: #fff;
     background-color: #741b81;
+}
+
+.bg-dark {
+    background-color: #171717!important;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #741b81;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #741b81;
+    border-color: #741b81;
+}
+
+.btn-primary:active {
+    color: #fff;
+    background-color: #52135b;
+    border-color: #52135b;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #52135b;
+    border-color: #52135b;
+}
+
+.btn-primary:visited {
+    color: #fff;
+    background-color: #52135b;
+    border-color: #52135b;
 }

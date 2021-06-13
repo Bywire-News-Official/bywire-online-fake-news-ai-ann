@@ -99,27 +99,27 @@
             <hr>
             <ul class="nav nav-pills flex-column mb-auto" id="bwTabs" role="tablist">
 
-                <li class="nav-item">
+                <li class="nav-item mt-3">
                     <a href="#" class="nav-link text-white active" id="welcome-tab" data-bs-toggle="pill" data-bs-target="#welcome" type="button" role="tab" aria-controls="welcome" aria-selected="true">
                         <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg> Fake News Detector
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item mt-3">
                     <a href="#" class="nav-link text-white" id="profile-tab" data-bs-toggle="pill" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
                         <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg> Sentiment Tools
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item mt-3">
                     <a href="#" class="nav-link text-white" id="messages-tab" data-bs-toggle="pill" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">
                         <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg> Emotions & Lexicon
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item mt-3">
                     <a href="#" class="nav-link text-white" id="settings-tab" data-bs-toggle="pill" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg> Social Media
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg> Live API - Bywire.news
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item mt-3">
                     <a href="#" class="nav-link text-white" id="last-tab" data-bs-toggle="pill" data-bs-target="#last" type="button" role="tab" aria-controls="last" aria-selected="false">
                         <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg> How it works?
                     </a>
@@ -152,20 +152,102 @@
 
                 <div class="container-fluid">
                     <div class="row mt-3">
-                        <div class="col-12 p-4">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                                a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        <div class="col-12 p-2">
 
+                            <h1>Is this News Fake or Not? Bywire AI Data Intergrity Analysis Centre</h1>
+                            <hr />
+                            <p>Enter the website URL into the field below:
+                            </p>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">https://</span>
+                                <input type="text" class="form-control form-control-lg" placeholder="www.example.com or example.com" aria-label="News Article URL" aria-describedby="basic-addon1">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Scrape/download article from url</button>
+
+                            </div>
+                            <p>Enter the website text into the field below:
                             </p>
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                                <label for="floatingTextarea2">Comments</label>
+                                <textarea class="form-control" placeholder="Leave a comment here" id="myText" style="height: 500px"></textarea>
+                                <label for="myText">News Article</label>
+                                <span id="wordCount">0</span> Words
                             </div>
+
+                            <div class="form-check form-check-inline mt-2">
+                                <input class="form-check-input" type="checkbox" id="fakeornot" value="fakeornot">
+                                <label class="form-check-label" for="fakeornot">TLDR: Fake or Not?!</label>
+                            </div>
+
+                            <div class="form-check form-check-inline mt-2">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                <label class="form-check-label" for="inlineCheckbox1">Sentiment scores</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" for="inlineCheckbox2">Layout analysis</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                <label class="form-check-label" for="inlineCheckbox3">Author score</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                                <label class="form-check-label" for="inlineCheckbox4">Publisher score</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+                                <label class="form-check-label" for="inlineCheckbox5">Political bias</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                                <label class="form-check-label" for="inlineCheckbox6">Originality</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                                <label class="form-check-label" for="inlineCheckbox6">History</label>
+                            </div>
+
 
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col p-2 mt-2">
+                            <button type="button" class="btn btn-primary btn-lg">Begin Analysis</button>
+                        </div>
+                    </div>
+
+                    <!--BEGIN RESULTS SECTION-->
+
+                    <div class="row">
+                        <div class="col p-2 mt-2">
+                            <small>Analysing...</small>
+                            <div class="progress">
+
+                                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col p-2 mt-2">
+
+
+                        </div>
+
+
+
+
+                    </div>
+                    <h2>Results</h2>
+                    <hr />
                 </div>
+
 
 
 
@@ -258,7 +340,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         /* global bootstrap: false */
         (function() {
@@ -268,6 +350,13 @@
                 new bootstrap.Tooltip(tooltipTriggerEl)
             })
         })()
+    </script>
+
+    <script>
+        $('#myText').on('keyup', function() {
+            var count = $('#myText').val().trim().split(' ');
+            $('#wordCount').text(count.length);
+        });
     </script>
 
 
