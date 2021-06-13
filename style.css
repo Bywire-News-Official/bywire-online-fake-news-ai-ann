@@ -145,3 +145,7 @@ main {
     background-color: #52135b;
     border-color: #52135b;
 }
+
+.results {
+    font-size: larger;
+}

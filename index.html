@@ -261,7 +261,7 @@
                         </div>
                     </div>
 
-                    <div class="row mt-4">
+                    <!--    <div class="row mt-4">
                         <div class="col-6 p-2 mt-2">
                             <div class="alert alert-danger" role="alert">
                                 <h2>WARNING - THIS IS FAKE!</h2>
@@ -284,13 +284,13 @@
                             </div>
                         </div>
                     </div>
-
+-->
                     <div class="row mt-4">
                         <div class="col p-2 mt-2">
 
-                            <h2>Trust Index</h2>
-                            <p id="trust_index_results"></p>
 
+                            <h2>Total Trust Score: <span id="trust_index"></span> </h2>
+                            <p class="results" id="trust_index_results"></p>
 
                         </div>
                     </div>
@@ -459,12 +459,12 @@
 
 
     <script>
-        const trust_score_label = "Trust Score";
-        const sentiment_score_label = "Sentiment Score";
-        const layout_score_label = "Layout Score";
-        const complexity_score_label = "Complexity Score";
-        const author_score_label = "Author Trust Score";
-        const platform_score_label = "Publisher Trust Score";
+        const trust_score_label = "Trust: ";
+        const sentiment_score_label = "Sentiment: ";
+        const layout_score_label = "Layout Score: ";
+        const complexity_score_label = "Complexity: ";
+        const author_score_label = "Author Trust: ";
+        const platform_score_label = "Publisher Trust: ";
         const space = " ";
 
 
@@ -477,14 +477,17 @@
             platform_score: 100
         };
 
-        console.log(trust_index_results);
+        const trust_index = results.trust_score + results.sentiment_score + results.layout_score + results.complexity_score + results.author_score + results.platform_score;
 
-        document.getElementById("trust_index_results").innerHTML = trust_score_label + space + results.trust_score + ", " + sentiment_score_label + space + results.sentiment_score + ", " +
-            layout_score_label + space + results.layout_score + ", " + complexity_score_label + space + results.complexity_score + ", " + author_score_label + space + results.author_score + ", " +
-            platform_score_label + space + results.platform_score + ". ";
+        console.log("Trust Index Score out of 600: " + space + trust_index);
 
 
-        console.log(trust_index_results);
+        document.getElementById("trust_index_results").innerHTML = trust_score_label + space + "<strong>" + results.trust_score + "</strong>" + ", " + sentiment_score_label + space + "<strong>" + results.sentiment_score + "</strong>" + ", " +
+            layout_score_label + space + "<strong>" + results.layout_score + "</strong>" + ", " + complexity_score_label + space + "<strong>" + results.complexity_score + "</strong>" + ", " + author_score_label + space + "<strong>" + results.author_score + "</strong>" + ", " +
+            platform_score_label + space + "<strong>" + results.platform_score + "</strong>" + ". ";
+
+
+        document.getElementById("trust_index").innerHTML = trust_index;
     </script>
 
 
