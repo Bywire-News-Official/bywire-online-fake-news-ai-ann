@@ -29,10 +29,6 @@
     </style>
 
 
-
-
-
-
 </head>
 
 <body>
@@ -295,6 +291,15 @@
                         </div>
                     </div>
 
+                    <div class="row mt-4">
+                        <div class="col p-2 mt-2">
+
+                            <canvas id="trustIndexChart" width="300" height="300"></canvas>
+
+
+                        </div>
+                    </div>
+
 
 
                     <!--  <div class="row mt-4">
@@ -455,10 +460,10 @@
         //Labels for the HTML output of each parameter. Wanted to use varaibles to future proof changes. 
         const trust_score_label = "Trust: ";
         const sentiment_score_label = "Sentiment: ";
-        const layout_score_label = "Layout Score: ";
+        const layout_score_label = "Layout: ";
         const complexity_score_label = "Complexity: ";
-        const author_score_label = "Author Trust: ";
-        const platform_score_label = "Publisher Trust: ";
+        const author_score_label = "Author: ";
+        const platform_score_label = "Publisher: ";
         const space = " ";
 
         // Example results output - this would be populated by the database or API
@@ -476,6 +481,8 @@
         //Conversting my JS object into a Array to utilse those features (namely for the out of score)
         const maxScoreArray = (Object.keys(results));
 
+        console.log(maxScoreArray)
+
         //Here I am taking the total number of items in the array and multiplying them by 100 to give us our percent score. 
         const maxScore = maxScoreArray.length * 100
 
@@ -489,6 +496,54 @@
 
         //Display the total trust score, and the total amount out of, which is a variable based on inputs, commented above.
         document.getElementById("trust_index").innerHTML = trust_index + space + "out of" + space + maxScore;
+
+
+        //Converting the Results Objects into a values array, to use in the charts
+        const resultsValues = (Object.values(results));
+
+        console.log(resultsValues);
+
+
+        //CHART.JS
+
+
+        let ctx = document.getElementById('trustIndexChart');
+
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [trust_score_label, sentiment_score_label, layout_score_label, complexity_score_label, author_score_label, platform_score_label],
+                datasets: [{
+                    label: 'Truth Index out of 100',
+                    data: resultsValues,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     </script>
 
 
