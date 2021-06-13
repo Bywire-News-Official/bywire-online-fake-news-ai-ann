@@ -439,18 +439,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script>
-        /* global bootstrap: false */
-        (function() {
-            'use strict'
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-            tooltipTriggerList.forEach(function(tooltipTriggerEl) {
-                new bootstrap.Tooltip(tooltipTriggerEl)
-            })
-        })()
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3/dist/chart.min.js"></script>
+
 
     <script>
+        //Using jQuery for a quick rough word count, however this needs to be improved as there is a spacing bug, need to only count each space once, might be worth dropping jquer and just using js
         $('#myText').on('keyup', function() {
             var count = $('#myText').val().trim().split(' ');
             $('#wordCount').text(count.length);
@@ -459,6 +452,7 @@
 
 
     <script>
+        //Labels for the HTML output of each parameter. Wanted to use varaibles to future proof changes. 
         const trust_score_label = "Trust: ";
         const sentiment_score_label = "Sentiment: ";
         const layout_score_label = "Layout Score: ";
@@ -467,7 +461,8 @@
         const platform_score_label = "Publisher Trust: ";
         const space = " ";
 
-
+        // Example results output - this would be populated by the database or API
+        // API data in still needs to be done, but this ensures the outputs are all working. 
         const results = {
             trust_score: 85,
             sentiment_score: 100,
@@ -477,17 +472,23 @@
             platform_score: 100
         };
 
+
+        //Conversting my JS object into a Array to utilse those features (namely for the out of score)
+        const maxScoreArray = (Object.keys(results));
+
+        //Here I am taking the total number of items in the array and multiplying them by 100 to give us our percent score. 
+        const maxScore = maxScoreArray.length * 100
+
+        //Calculating the total trust score, based on the paraments from the results object.
         const trust_index = results.trust_score + results.sentiment_score + results.layout_score + results.complexity_score + results.author_score + results.platform_score;
 
-        console.log("Trust Index Score out of 600: " + space + trust_index);
-
-
+        //This is the basic method to print out the results on the page from each child element of the results object. This could be changed into a loop
         document.getElementById("trust_index_results").innerHTML = trust_score_label + space + "<strong>" + results.trust_score + "</strong>" + ", " + sentiment_score_label + space + "<strong>" + results.sentiment_score + "</strong>" + ", " +
             layout_score_label + space + "<strong>" + results.layout_score + "</strong>" + ", " + complexity_score_label + space + "<strong>" + results.complexity_score + "</strong>" + ", " + author_score_label + space + "<strong>" + results.author_score + "</strong>" + ", " +
             platform_score_label + space + "<strong>" + results.platform_score + "</strong>" + ". ";
 
-
-        document.getElementById("trust_index").innerHTML = trust_index;
+        //Display the total trust score, and the total amount out of, which is a variable based on inputs, commented above.
+        document.getElementById("trust_index").innerHTML = trust_index + space + "out of" + space + maxScore;
     </script>
 
 
