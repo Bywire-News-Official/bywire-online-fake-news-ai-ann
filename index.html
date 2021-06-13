@@ -27,6 +27,12 @@
             }
         }
     </style>
+
+
+
+
+
+
 </head>
 
 <body>
@@ -156,57 +162,73 @@
 
                             <h1>Is this News Fake or Not? Bywire AI Data Intergrity Analysis Centre </h1>
                             <hr />
-                            <p>Enter the website URL into the field below:
+                            <p>Enter the IPFS blockchain address into the field below:
                             </p>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">https://</span>
-                                <input type="text" class="form-control form-control-lg" placeholder="www.example.com or example.com" aria-label="News Article URL" aria-describedby="basic-addon1">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Scrape/download article from url</button>
+                                <span class="input-group-text" id="basic-addon1">https://ipfs.io/ipfs/</span>
+                                <input type="text" class="form-control form-control-lg" placeholder="Qme7ss3ARVgxv6rXqVPiikMJ8u2NLgmgszg13pYrDKEoiu" aria-label="News Article URL" aria-describedby="basic-addon1">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Download from Blockchain</button>
 
                             </div>
                             <p>Enter the website text into the field below:
                             </p>
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="myText" style="height: 500px"></textarea>
+                                <textarea class="form-control" placeholder="Leave a comment here" id="myText" style="height: 400px"></textarea>
                                 <label for="myText">News Article</label>
                                 <span id="wordCount">0</span> Words
                             </div>
 
                             <div class="form-check form-check-inline mt-2">
-                                <input class="form-check-input" type="checkbox" id="fakeornot" value="fakeornot">
-                                <label class="form-check-label" for="fakeornot">TLDR: Fake or Not?!</label>
+                                <fieldset>
+                                    <input class="form-check-input" type="checkbox" id="fakeornot" value="fakeornot" checked>
+                                    <label class="form-check-label" for="fakeornot">Trust Index</label>
+                                </fieldset>
                             </div>
 
                             <div class="form-check form-check-inline mt-2">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1">Sentiment scores</label>
+                                <fieldset disabled>
+                                    <input class="form-check-input disabled" type="checkbox" id="inlineCheckbox1" value="option1">
+                                    <label class="form-check-label" for="inlineCheckbox1">Sentiment scores</label>
+                                </fieldset>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2">Layout analysis</label>
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                    <label class="form-check-label" for="inlineCheckbox2">Layout analysis</label>
+                                </fieldset>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                                <label class="form-check-label" for="inlineCheckbox3">Author score</label>
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                    <label class="form-check-label" for="inlineCheckbox3">Author score</label>
+                                </fieldset>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
-                                <label class="form-check-label" for="inlineCheckbox4">Publisher score</label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
-                                <label class="form-check-label" for="inlineCheckbox5">Political bias</label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
-                                <label class="form-check-label" for="inlineCheckbox6">Originality</label>
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                                    <label class="form-check-label" for="inlineCheckbox4">Publisher score</label>
+                                </fieldset>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
-                                <label class="form-check-label" for="inlineCheckbox6">History</label>
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+                                    <label class="form-check-label" for="inlineCheckbox5">Political bias</label>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                                    <label class="form-check-label" for="inlineCheckbox6">Originality</label>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                                    <label class="form-check-label" for="inlineCheckbox6">History</label>
+                                </fieldset>
                             </div>
 
 
@@ -263,8 +285,19 @@
                         </div>
                     </div>
 
-
                     <div class="row mt-4">
+                        <div class="col p-2 mt-2">
+
+                            <h2>Trust Index</h2>
+                            <p id="trust_index_results"></p>
+
+
+                        </div>
+                    </div>
+
+
+
+                    <!--  <div class="row mt-4">
                         <div class="col-3 p-2 mt-2">
                             <h2>Satire or parody</h2>
                             <p>Satire or parody is where the information has the potential to fool and may be misinterpreted as fact. Satire does not necessarily cause harm as it takes stories from news sources and uses ridicule and sarcasm. Parodies focus
@@ -307,7 +340,7 @@
                         </div>
 
                     </div>
-
+-->
 
 
 
@@ -423,6 +456,39 @@
             $('#wordCount').text(count.length);
         });
     </script>
+
+
+    <script>
+        const trust_score_label = "Trust Score";
+        const sentiment_score_label = "Sentiment Score";
+        const layout_score_label = "Layout Score";
+        const complexity_score_label = "Complexity Score";
+        const author_score_label = "Author Trust Score";
+        const platform_score_label = "Publisher Trust Score";
+        const space = " ";
+
+
+        const results = {
+            trust_score: 85,
+            sentiment_score: 100,
+            layout_score: 50,
+            complexity_score: 75,
+            author_score: 100,
+            platform_score: 100
+        };
+
+        console.log(trust_index_results);
+
+        document.getElementById("trust_index_results").innerHTML = trust_score_label + space + results.trust_score + ", " + sentiment_score_label + space + results.sentiment_score + ", " +
+            layout_score_label + space + results.layout_score + ", " + complexity_score_label + space + results.complexity_score + ", " + author_score_label + space + results.author_score + ", " +
+            platform_score_label + space + results.platform_score + ". ";
+
+
+        console.log(trust_index_results);
+    </script>
+
+
+
 
 
 </body>
