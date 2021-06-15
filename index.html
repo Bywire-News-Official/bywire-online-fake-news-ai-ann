@@ -232,7 +232,7 @@
                     </div>
                     <div class="row">
                         <div class="col p-2 mt-2">
-                            <a href="#results" type="button" class="btn btn-primary btn-lg">Begin Analysis</a>
+                            <a href="#results" type="button" class="btn btn-primary btn-lg" onclick="submit_text();">Begin Analysis</a>
                         </div>
                     </div>
 
@@ -249,10 +249,10 @@
 
                     <div class="row">
                         <div class="col p-2 mt-2">
-                            <small>Analysing...</small>
+                            <small id="progress-status">Ready.</small>
                             <div class="progress">
 
-                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" id="progress-bar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
                             </div>
                         </div>
                     </div>
@@ -475,140 +475,239 @@
 
     <script>
         //Labels for the HTML output of each parameter. Wanted to use varaibles to future proof changes. 
-        const trust_score_label = "Trust: ";
-        const sentiment_score_label = "Sentiment: ";
-        const layout_score_label = "Layout: ";
-        const complexity_score_label = "Complexity: ";
-        const author_score_label = "Author: ";
-        const platform_score_label = "Publisher: ";
-        const space = " ";
-        const trustedNews = "This article is trustworthy"
-        const caustionNews = "WARNING: This article may not be trustworthy."
+      const trust_score_label = "Trust: ";
+      const sentiment_score_label = "Sentiment: ";
+      const layout_score_label = "Layout: ";
+      const divergency_score_label = "Divergence: ";
+      const complexity_score_label = "Complexity: ";
+      const author_score_label = "Author: ";
+      const platform_score_label = "Publisher: ";
+      const space = " ";
+      const trustedNews = "This article is trustworthy"
+      const caustionNews = "WARNING: This article may not be trustworthy."
+      
+      const server = "http://ec2-99-81-187-79.eu-west-1.compute.amazonaws.com:5055"
+      //const server = "http://127.0.0.1:5055"
+      const routes = {"text":  "/analyze/text",
+		      "ipfs":  "/analyze/ipfs",
+		      "query": "/analyze/query"}
+      var requests = {}
 
-        // Example results output - this would be populated by the database or API
-        // API data in still needs to be done, but this ensures the outputs are all working. 
-        const results = {
-            trust_score: 85,
-            sentiment_score: 100,
-            layout_score: 50,
-            complexity_score: 75,
-            author_score: 100,
-            platform_score: 100
-        };
+      function show_progress(done, progress) {
+	  var status_str = (done) ? "Analyzing..." : "Ready."
+	  document.getElementById("progress-status").innerHTML = status_str;
 
+	  document.getElementById("progress-bar").value     = progress
+	  document.getElementById("progress-bar").innerHTML = progress+" %"
+      }
+      
 
-        //Conversting my JS object into a Array to utilse those features (namely for the out of score)
-        const maxScoreArray = (Object.keys(results));
+      function show_results(results) {
+	  alert("show_results")
+	  alert(Object.keys(results))
+	  alert(Object.values(results))
+          // Example results output - this would be populated by the database or API
+          // API data in still needs to be done, but this ensures the outputs are all working. 
 
-        console.log(maxScoreArray)
+          //Conversting my JS object into a Array to utilse those features (namely for the out of score)
+          const maxScoreArray = (Object.keys(results));
 
-        //Here I am taking the total number of items in the array and multiplying them by 100 to give us our percent score. 
-        const maxScore = maxScoreArray.length * 100
+          //Here I am taking the total number of items in the array and multiplying them by 100 to give us our percent score. 
+          const maxScore = 100
 
-        //Calculating the total trust score, based on the paraments from the results object.
-        const trust_index = results.trust_score + results.sentiment_score + results.layout_score + results.complexity_score + results.author_score + results.platform_score;
+          //Calculating the total trust score, based on the paraments from the results object.
 
         //This is the basic method to print out the results on the page from each child element of the results object. This could be changed into a loop
-        document.getElementById("trust_index_results").innerHTML = trust_score_label + space + "<strong>" + results.trust_score + "</strong>" + ", " + sentiment_score_label + space + "<strong>" + results.sentiment_score + "</strong>" + ", " +
-            layout_score_label + space + "<strong>" + results.layout_score + "</strong>" + ", " + complexity_score_label + space + "<strong>" + results.complexity_score + "</strong>" + ", " + author_score_label + space + "<strong>" + results.author_score + "</strong>" + ", " +
-            platform_score_label + space + "<strong>" + results.platform_score + "</strong>" + ". ";
+          var text = ""
+	  text += trust_score_label + space
+	  text += "<strong>" + results["trust_score"] + "</strong>" + ", "
+	  text += sentiment_score_label + space
+	  text += "<strong>" + results["sentiment_score"] + "</strong>" + ", "
+	  text += layout_score_label + space
+	  text += "<strong>" + results["layout_score"] + "</strong>" + ", "
+	  text += divergency_score_label + space
+	  text += "<strong>" + results["divergency_score"] + "</strong>" + ", "
+	  text += complexity_score_label + space
+	  text += "<strong>" + results["complexity_score"] + "</strong>" + ", "
+	  text += author_score_label + space
+	  text += "<strong>" + results["author_score"] + "</strong>" + ", "
+	  text += platform_score_label + space
+	  text += "<strong>" + results["platform_score"] + "</strong>" + ". ";
+	  alert(text)
 
-        //Display the total trust score, and the total amount out of, which is a variable based on inputs, commented above.
-        document.getElementById("trust_index").innerHTML = trust_index + space + "out of" + space + maxScore;
+	  document.getElementById("trust_index_results").innerHTML = text
 
-
-        //Converting the Results Objects into a values array, to use in the charts
-        const resultsValues = (Object.values(results));
-
-        console.log(resultsValues);
-
-
-        //CHART.JS
-
-
-        let ctx = document.getElementById('trustIndexChart');
-
-
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: [trust_score_label, sentiment_score_label, layout_score_label, complexity_score_label, author_score_label, platform_score_label],
-                datasets: [{
-                    label: 'Truth Index out of 100',
-                    data: resultsValues,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+          //Display the total trust score, and the total amount out of, which is a variable based on inputs, commented above.
+          document.getElementById("trust_index").innerHTML = results["trust_score"] + space + "out of" + space + maxScore;
 
 
-        // PIE CHARTS FOR TOTAL TRUTH INDEX SCORE
+          //Converting the Results Objects into a values array, to use in the charts
+          const resultsValues = (Object.values(results));
 
-        let truthIndexOutput = document.getElementById('trustIndexPie');
-
-        const data = {
-            labels: [
-                'News Article Total Score out of 600',
-                '100% Trusted'
-            ],
-            datasets: [{
-                label: 'Total Trust Score',
-                data: [trust_index, maxScore],
-                backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)'
-                ],
-                hoverOffset: 4
-            }]
-        };
-
-        var myPieChart = new Chart(truthIndexOutput, {
-            type: 'bar',
-            data: data
-        })
+          //CHART.JS
+          let ctx = document.getElementById('trustIndexChart');
 
 
-        //if (window.myPieChart instanceof Chart) {
-        //      window.myPieChart.destroy();
-        // }
+          var myChart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                  labels: [trust_score_label, sentiment_score_label, layout_score_label, divergency_score_label, complexity_score_label, author_score_label, platform_score_label],
+                  datasets: [{
+                      label: 'Trust Index out of 100',
+                      data: resultsValues,
+                      backgroundColor: [
+                          'rgba(255, 99, 132, 0.2)',
+                          'rgba(54, 162, 235, 0.2)',
+                          'rgba(255, 206, 86, 0.2)',
+                          'rgba(255, 206, 86, 0.2)',
+                          'rgba(75, 192, 192, 0.2)',
+                          'rgba(153, 102, 255, 0.2)',
+                          'rgba(255, 159, 64, 0.2)'
+                      ],
+                      borderColor: [
+                          'rgba(255, 99, 132, 1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(255, 206, 86, 1)',
+                          'rgba(255, 206, 86, 1)',
+                          'rgba(75, 192, 192, 1)',
+                          'rgba(153, 102, 255, 1)',
+                          'rgba(255, 159, 64, 1)'
+                      ],
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  scales: {
+                      y: {
+                          beginAtZero: true
+                      }
+                  }
+              }
+          });
 
-        // This function checks to see if the results are greater than 500m if so then returns trusted var if not, then untrusted varaible. This can now be broadened out
-        function displayResults(a) {
-            let resultsInternal;
-            if (a > 500) {
-                resultsInternal = trustedNews;
-            } else {
-                resultsInternal = caustionNews;
-            }
-            return resultsInternal
-        }
 
-        console.log(displayResults(trust_index));
+          // PIE CHARTS FOR TOTAL TRUTH INDEX SCORE
 
-        document.getElementById("trustedOrNot").innerHTML = displayResults(trust_index);
+          let truthIndexOutput = document.getElementById('trustIndexPie');
+
+          const data = {
+              labels: [
+                  'News Article Total Score out of 100',
+                  '100% Trusted'
+              ],
+              datasets: [{
+                  label: 'Total Trust Score',
+                  data: [results["trust_score"], maxScore],
+                  backgroundColor: [
+                      'rgb(255, 99, 132)',
+                      'rgb(54, 162, 235)'
+                  ],
+                  hoverOffset: 4
+              }]
+          };
+
+          var myPieChart = new Chart(truthIndexOutput, {
+              type: 'bar',
+              data: data
+          })
+
+
+          // This function checks to see if the results are greater than 500m if so then returns trusted var if not, then untrusted varaible. This can now be broadened out
+          function displayResults(a) {
+              let resultsInternal;
+              if (a > 50) {
+                  resultsInternal = trustedNews;
+              } else {
+                  resultsInternal = caustionNews;
+              }
+              return resultsInternal
+          }
+
+	  document.getElementById("trustedOrNot").innerHTML = displayResults(results["trust_score"]);
+
+      }
+
+      const results = {
+          trust_score:      100,
+          sentiment_score:  100,
+          layout_score:     100,
+          divergency_score: 100,
+          complexity_score: 100,
+          author_score:     100,
+          platform_score:   100
+      };
+
+      //show_results(results);
+
+      
+      function check_api(data) {
+	  var id = data["id"]
+	  if ("new" in data && data["new"]) {
+	      requests[id] = {}
+	      show_progress(false, 0)
+	  }
+	  if (!(id in requests)) {
+	      return
+	  }
+	  if ("done" in data) {
+	      if (data["done"]) {
+		  if (id in requests) {
+		      delete requests[data["id"]]
+		      if ("data" in data) {
+			  show_results(data["data"])
+		      }
+		      show_progress(true, 100)
+		  }
+	      } else {
+		  setTimeout(check_api({"id": id}), 0.20000);
+	      }
+	  } else {
+	      send_to_api("query", data, check_api)
+	  }
+      }      
+      
+      function submit_text() {
+	  var text = document.getElementById("myText").value
+	  var data = {"content":     text,
+		      "title":       "",
+		      "platform":    "prototype",
+		      "author":      "user",
+		      "publisher":   "user"
+		     }
+	  send_to_api("text", data, check_api)
+      }
+
+      
+      function send_to_api(method, data, callback) {
+	  var xmlhttp = new XMLHttpRequest();
+  	  xmlhttp.onreadystatechange = function () {
+	      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+		  //try {
+		      var text = xmlhttp.responseText.replace(/(?:\\[rn])+/g, '')
+		      text     = text.replace(/\\"/g, '"')
+		      text     = text.replace(/^"/, '', text)
+		      text     = text.replace(/"$/, '', text)
+		      var json = JSON.parse(text);
+		      callback(json)
+		  //} catch {
+		  //    alert(xmlhttp.responseText)
+		  //}
+	      }
+	  };
+	  var target = "request.php"
+	  //xmlhttp.setRequestHeader("Content-Type", "application/json");
+	  var url = "action="+encodeURIComponent(method)
+	  url += "&data="+encodeURIComponent(JSON.stringify(data))
+	  xmlhttp.open("POST", target, true);
+          xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	  //xmlhttp.setRequestHeader('Access-Control-Allow-Headers', '*');
+	  //xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
+	  //var request_data = JSON.stringify(request);
+	  xmlhttp.send(url)
+
+      }
+
+
     </script>
 
 
@@ -619,3 +718,18 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
