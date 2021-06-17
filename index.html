@@ -162,8 +162,8 @@
                             </p>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">https://ipfs.io/ipfs/</span>
-                                <input type="text" class="form-control form-control-lg" placeholder="Qme7ss3ARVgxv6rXqVPiikMJ8u2NLgmgszg13pYrDKEoiu" aria-label="News Article URL" aria-describedby="basic-addon1">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Download from Blockchain</button>
+                                <input type="text" class="form-control form-control-lg" id="ipfs-input" placeholder="Qme7ss3ARVgxv6rXqVPiikMJ8u2NLgmgszg13pYrDKEoiu" aria-label="News Article URL" aria-describedby="basic-addon1">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="submit_ipfs();">Download from Blockchain</button>
 
                             </div>
                             <p>Enter the website text into the field below:
@@ -233,6 +233,11 @@
                     <div class="row">
                         <div class="col p-2 mt-2">
                             <a href="#results" type="button" class="btn btn-primary btn-lg" onclick="submit_text();">Begin Analysis</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col p-2 mt-2">
+                            <a href="#results" type="button" class="btn btn-primary btn-lg" onclick="submit_flag();">Flag as Fake</a>
                         </div>
                     </div>
 
@@ -430,11 +435,16 @@
                 <div class="container-fluid">
                     <div class="row mt-3">
                         <div class="col-12 p-4">
-                            <p>HOW TI WORKS Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
-                                to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-                                containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
+                            <p>HOW IT WORKS 
                             </p>
+                            <p>This is a demo site as a prototype for fake news detection using expert ai. 
+                            </p>
+                            <p>An article can be uploaded through this site is converted into a Feature vector using well established criteria [1] for fake news. 
+                            </p>
+			    <p>
+                              <small> 1) Usareza Zafrani Xinyi Zhou. “A Survey of Fake News:Fundamental Theories, Detection Methods, and Opportunities”. In: Arxiv 1911.00643 (2020). url: <a href="https://arxiv.org/abs/1812.00315" target="#">https://arxiv.org/abs/1812.00315</a>.
+			      </small>
+			    </p>
                             <div class="form-floating">
                                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
                                 <label for="floatingTextarea2">Comments</label>
@@ -486,12 +496,8 @@
       const trustedNews = "This article is trustworthy"
       const caustionNews = "WARNING: This article may not be trustworthy."
       
-      const server = "http://ec2-99-81-187-79.eu-west-1.compute.amazonaws.com:5055"
-      //const server = "http://127.0.0.1:5055"
-      const routes = {"text":  "/analyze/text",
-		      "ipfs":  "/analyze/ipfs",
-		      "query": "/analyze/query"}
-      var requests = {}
+      var requests   = {}
+      var current_id = ""
 
       function show_progress(done, progress) {
 	  var status_str = (done) ? "Analyzing..." : "Ready."
@@ -503,9 +509,6 @@
       
 
       function show_results(results) {
-	  alert("show_results")
-	  alert(Object.keys(results))
-	  alert(Object.values(results))
           // Example results output - this would be populated by the database or API
           // API data in still needs to be done, but this ensures the outputs are all working. 
 
@@ -518,7 +521,7 @@
           //Calculating the total trust score, based on the paraments from the results object.
 
         //This is the basic method to print out the results on the page from each child element of the results object. This could be changed into a loop
-          var text = ""
+          var text = "<p>"
 	  text += trust_score_label + space
 	  text += "<strong>" + results["trust_score"] + "</strong>" + ", "
 	  text += sentiment_score_label + space
@@ -533,8 +536,9 @@
 	  text += "<strong>" + results["author_score"] + "</strong>" + ", "
 	  text += platform_score_label + space
 	  text += "<strong>" + results["platform_score"] + "</strong>" + ". ";
-	  alert(text)
-
+	  text += "</p><p>"
+	  text += results["reasons"]
+	  text += "</p>"
 	  document.getElementById("trust_index_results").innerHTML = text
 
           //Display the total trust score, and the total amount out of, which is a variable based on inputs, commented above.
@@ -638,23 +642,27 @@
       };
 
       //show_results(results);
-
+      function show_text(text) {
+	  document.getElementById("myText").innerHTML = text
+      }
       
       function check_api(data) {
 	  var id = data["id"]
 	  if ("new" in data && data["new"]) {
+	      current_id   = id
 	      requests[id] = {}
 	      show_progress(false, 0)
 	  }
-	  if (!(id in requests)) {
-	      return
-	  }
 	  if ("done" in data) {
 	      if (data["done"]) {
+		  current_id = id
 		  if (id in requests) {
 		      delete requests[data["id"]]
 		      if ("data" in data) {
 			  show_results(data["data"])
+		      }
+		      if ("text" in data) {
+			  show_text(data["text"])
 		      }
 		      show_progress(true, 100)
 		  }
@@ -666,6 +674,23 @@
 	  }
       }      
       
+      function submit_flag(strength=100.0) {
+	  if (current_id === "") {
+	      return
+	  }
+	  var data = {"id":          current_id,
+		      "is_expert":   false,
+		      "strength":    strength}
+	  alert(Object.values(data))
+	  send_to_api("flag", data, check_api)
+      }
+
+      function submit_ipfs() {
+	  var hash = document.getElementById("ipfs-input").value
+	  var data = {"ipfs_hash":   hash}
+	  send_to_api("ipfs", data, check_api)
+      }
+
       function submit_text() {
 	  var text = document.getElementById("myText").value
 	  var data = {"content":     text,
@@ -683,12 +708,13 @@
   	  xmlhttp.onreadystatechange = function () {
 	      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 		  //try {
-		      var text = xmlhttp.responseText.replace(/(?:\\[rn])+/g, '')
-		      text     = text.replace(/\\"/g, '"')
-		      text     = text.replace(/^"/, '', text)
-		      text     = text.replace(/"$/, '', text)
-		      var json = JSON.parse(text);
-		      callback(json)
+		  var text = xmlhttp.responseText.replace(/(?:\\[rn])+/g, '')
+		  text     = text.replace(/\\"/g, '"')
+		  text     = text.replace(/^"/g, '')
+		  text     = text.replace(/"$/g, '')
+		  text     = text.replace(/\\n/g, '')
+		  var json = JSON.parse(text);
+		  callback(json)
 		  //} catch {
 		  //    alert(xmlhttp.responseText)
 		  //}

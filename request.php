@@ -39,6 +39,7 @@ $data          = json_decode($_REQUEST["data"]);
 $server = "ec2-99-81-187-79.eu-west-1.compute.amazonaws.com:5055";
 $routes = array("text"=>$server."/analyze/text",
 		"ipfs"=>$server."/analyze/ipfs",
+		"flag"=>$server."/analyze/flag",
 		"query"=>$server."/analyze/query");
 echo json_encode(call_api("POST", $routes[$action], $data));
 
