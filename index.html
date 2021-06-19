@@ -158,6 +158,251 @@
                     <div class="row mt-3">
                         <div class="col-12 p-2">
 
+                            <h1>Is this News Fake News Folks...or Not?</h1>
+                            <hr />
+
+                            <p>Enter the website text into the field below:
+                            </p>
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Leave a comment here" id="myText" style="height: 400px"></textarea>
+                                <label for="myText">News Article</label>
+                                <span id="wordCount">0</span> Words
+                            </div>
+
+                            <div class="form-check form-check-inline mt-2">
+                                <fieldset>
+                                    <input class="form-check-input" type="checkbox" id="fakeornot" value="fakeornot" checked>
+                                    <label class="form-check-label" for="fakeornot">Trust Index</label>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-check form-check-inline mt-2">
+                                <fieldset disabled>
+                                    <input class="form-check-input disabled" type="checkbox" id="inlineCheckbox1" value="option1">
+                                    <label class="form-check-label" for="inlineCheckbox1">Sentiment scores</label>
+                                </fieldset>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                    <label class="form-check-label" for="inlineCheckbox2">Layout analysis</label>
+                                </fieldset>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                    <label class="form-check-label" for="inlineCheckbox3">Author score</label>
+                                </fieldset>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                                    <label class="form-check-label" for="inlineCheckbox4">Publisher score</label>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+                                    <label class="form-check-label" for="inlineCheckbox5">Political bias</label>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                                    <label class="form-check-label" for="inlineCheckbox6">Originality</label>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                                    <label class="form-check-label" for="inlineCheckbox6">History</label>
+                                </fieldset>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col p-2 mt-2">
+                            <a href="#results" type="button" class="btn btn-primary btn-lg buttonResults" onclick="submit_text();">Begin Analysis</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col p-2 mt-2">
+                            <a href="#results" type="button" class="btn btn-primary btn-lg" onclick="submit_flag();">Flag as Fake</a>
+                        </div>
+                    </div>
+
+                    <!--BEGIN RESULTS SECTION-->
+
+
+                    <div class="row hide">
+                        <div class="col p-2 mt-2" id="results">
+                            <h2>Results</h2>
+                            <hr />
+                        </div>
+                    </div>
+
+
+                    <div class="row hide">
+                        <div class="col p-2 mt-2">
+                            <small id="progress-status">Ready.</small>
+                            <div class="progress">
+
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" id="progress-bar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--    <div class="row mt-4">
+                        <div class="col-6 p-2 mt-2">
+                            <div class="alert alert-danger" role="alert">
+                                <h2>WARNING - THIS IS FAKE!</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-6 p-2 mt-2">
+                            <div class="alert alert-success" role="alert">
+                                <h2>Success, this is true!</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-6 p-2 mt-2">
+                            <div class="alert alert-warning" role="alert">
+                                <h2>WARNING - THIS LOOKS DODGY!</h2>
+                            </div>
+                        </div>
+                    </div>
+-->
+                    <div class="row hide mt-3">
+                        <div class="col-12 p-2">
+
+                            <h1 id="trustedOrNot"></h1>
+                            <h2>Total Trust Score: <span id="trust_index"></span> </h2>
+                            <p class="results" id="trust_index_results"></p>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row hide mt-4">
+                        <div class="col p-2">
+                            <div class="gauge gauge--liveupdate" id="gauge">
+                                <div class="gauge__container">
+                                    <div class="gauge__marker"></div>
+                                    <div class="gauge__background"></div>
+                                    <div class="gauge__center"></div>
+                                    <div class="gauge__data"></div>
+                                    <div class="gauge__needle"></div>
+                                </div>
+                                <div class="gauge__labels mdl-typography__headline">
+                                    <span class="gauge__label--low">FAKE</span>
+                                    <span class="gauge__label--spacer"></span>
+                                    <span class="gauge__label--high">TRUE</span>
+                                </div>
+                            </div>
+                            <script src="material-gauge.js"></script>
+                            <script>
+                                var gauge = new Gauge(document.getElementById("gauge"));
+
+                                gauge.value(0.10);
+                            </script>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row mt-4 hide">
+                    <div class="col p-2 mt-2">
+
+
+                        <canvas id="trustIndexPie" width="300" height="300"></canvas>
+
+
+                    </div>
+                </div>
+
+
+                <div class="row mt-4 hide">
+                    <div class="col p-2 mt-2">
+
+
+                        <canvas id="trustIndexChart" width="300" height="300"></canvas>
+
+
+                    </div>
+                </div>
+
+
+
+
+
+                <!--  <div class="row mt-4">
+                        <div class="col-3 p-2 mt-2">
+                            <h2>Satire or parody</h2>
+                            <p>Satire or parody is where the information has the potential to fool and may be misinterpreted as fact. Satire does not necessarily cause harm as it takes stories from news sources and uses ridicule and sarcasm. Parodies focus
+                                on its content and are explicitly produced for entertainment purposes.</p>
+                            <hr />
+                        </div>
+                        <div class="col-3 p-2 mt-2">
+                            <h2>False connection</h2>
+                            <p>A false connection is obvious when headlines, visuals or captions do not support the content. The kind of news that is built on poor journalism with unrelated attributes to attract attention and used for profit. For example,
+                                reading a headline that states the death of a celebrity but upon clicking, the content of the entire article does not mention the celebrity</p>
+                            <hr />
+                        </div>
+                        <div class="col-3 p-2 mt-2">
+                            <h2>Misleading content</h2>
+                            <hr />
+                            <p>Misleading content is the type of fake news that uses information to frame an issue or an individual. A popular form of news used by politicians to bring down their opponents by making false claims with possibly some truth.</p>
+                        </div>
+                        <div class="col-3 p-2 mt-2">
+                            <h2>False context</h2>
+                            <hr />
+                            <p>False context includes false contextual information that is shared around genuine content.</p>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-3 p-2 mt-2">
+                            <h2>Impostor content</h2>
+                            <hr />
+                            <p>Derives from a false or made-up source which impersonates a real news source.</p>
+                        </div>
+                        <div class="col-3 p-2 mt-2">
+                            <h2>Manipulated content</h2>
+                            <hr />
+                            <p>Presents genuine information or imagery but deceives to tell a different story.</p>
+                        </div>
+                        <div class="col-3 p-2 mt-2">
+                            <h2>Fabricated content</h2>
+                            <hr />
+                            <p>New and fully fabricated content that is 100% false with the intention to deceive and cause harm.</p>
+                        </div>
+
+                    </div>
+-->
+
+
+
+
+
+
+
+
+            </div>
+            <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="container-fluid">
+                    <div class="row mt-3">
+                        <div class="col-12 p-2">
+
                             <h1>Is this News Fake or Not? Bywire AI Data Intergrity Analysis Centre </h1>
                             <hr />
                             <p>Enter the IPFS blockchain address into the field below:
@@ -230,194 +475,24 @@
                             </div>
 
 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col p-2 mt-2">
-                            <a href="#results" type="button" class="btn btn-primary btn-lg" onclick="submit_text();">Begin Analysis</a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col p-2 mt-2">
-                            <a href="#results" type="button" class="btn btn-primary btn-lg" onclick="submit_flag();">Flag as Fake</a>
-                        </div>
-                    </div>
 
-                    <!--BEGIN RESULTS SECTION-->
-
-
-                    <div class="row">
-                        <div class="col p-2 mt-2" id="results">
-                            <h2>Results</h2>
-                            <hr />
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col p-2 mt-2">
-                            <small id="progress-status">Ready.</small>
-                            <div class="progress">
-
-                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" id="progress-bar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--    <div class="row mt-4">
-                        <div class="col-6 p-2 mt-2">
-                            <div class="alert alert-danger" role="alert">
-                                <h2>WARNING - THIS IS FAKE!</h2>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-4">
-                        <div class="col-6 p-2 mt-2">
-                            <div class="alert alert-success" role="alert">
-                                <h2>Success, this is true!</h2>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-4">
-                        <div class="col-6 p-2 mt-2">
-                            <div class="alert alert-warning" role="alert">
-                                <h2>WARNING - THIS LOOKS DODGY!</h2>
-                            </div>
-                        </div>
-                    </div>
--->
-                    <div class="row mt-4">
-                        <div class="col p-2 mt-2">
-
-                            <h1 id="trustedOrNot"></h1>
-                            <h2>Total Trust Score: <span id="trust_index"></span> </h2>
-                            <p class="results" id="trust_index_results"></p>
-
-                        </div>
-                    </div>
-
-
-                    <div class="row mt-4">
-                        <div class="col">
-                            <div class="gauge gauge--liveupdate" id="gauge">
-                                <div class="gauge__container">
-                                    <div class="gauge__marker"></div>
-                                    <div class="gauge__background"></div>
-                                    <div class="gauge__center"></div>
-                                    <div class="gauge__data"></div>
-                                    <div class="gauge__needle"></div>
-                                </div>
-                                <div class="gauge__labels mdl-typography__headline">
-                                    <span class="gauge__label--low">FAKE</span>
-                                    <span class="gauge__label--spacer"></span>
-                                    <span class="gauge__label--high">TRUE</span>
+                            <div class="row">
+                                <div class="col p-2 mt-2">
+                                    <a href="#results" type="button" class="btn btn-primary btn-lg" onclick="submit_text();">Begin Analysis</a>
                                 </div>
                             </div>
-                            <script src="material-gauge.js"></script>
-                            <script>
-                                var gauge = new Gauge(document.getElementById("gauge"));
-
-                                gauge.value(0.10);
-                            </script>
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="row mt-4">
-                    <div class="col p-2 mt-2">
-
-
-                        <canvas id="trustIndexPie" width="300" height="300"></canvas>
-
-
-                    </div>
-                </div>
-
-
-                <div class="row mt-4">
-                    <div class="col p-2 mt-2">
-
-
-                        <canvas id="trustIndexChart" width="300" height="300"></canvas>
-
-
-                    </div>
-                </div>
-
-
-
-
-
-                <!--  <div class="row mt-4">
-                        <div class="col-3 p-2 mt-2">
-                            <h2>Satire or parody</h2>
-                            <p>Satire or parody is where the information has the potential to fool and may be misinterpreted as fact. Satire does not necessarily cause harm as it takes stories from news sources and uses ridicule and sarcasm. Parodies focus
-                                on its content and are explicitly produced for entertainment purposes.</p>
-                            <hr />
-                        </div>
-                        <div class="col-3 p-2 mt-2">
-                            <h2>False connection</h2>
-                            <p>A false connection is obvious when headlines, visuals or captions do not support the content. The kind of news that is built on poor journalism with unrelated attributes to attract attention and used for profit. For example,
-                                reading a headline that states the death of a celebrity but upon clicking, the content of the entire article does not mention the celebrity</p>
-                            <hr />
-                        </div>
-                        <div class="col-3 p-2 mt-2">
-                            <h2>Misleading content</h2>
-                            <hr />
-                            <p>Misleading content is the type of fake news that uses information to frame an issue or an individual. A popular form of news used by politicians to bring down their opponents by making false claims with possibly some truth.</p>
-                        </div>
-                        <div class="col-3 p-2 mt-2">
-                            <h2>False context</h2>
-                            <hr />
-                            <p>False context includes false contextual information that is shared around genuine content.</p>
-                        </div>
-                    </div>
-
-                    <div class="row mt-4">
-                        <div class="col-3 p-2 mt-2">
-                            <h2>Impostor content</h2>
-                            <hr />
-                            <p>Derives from a false or made-up source which impersonates a real news source.</p>
-                        </div>
-                        <div class="col-3 p-2 mt-2">
-                            <h2>Manipulated content</h2>
-                            <hr />
-                            <p>Presents genuine information or imagery but deceives to tell a different story.</p>
-                        </div>
-                        <div class="col-3 p-2 mt-2">
-                            <h2>Fabricated content</h2>
-                            <hr />
-                            <p>New and fully fabricated content that is 100% false with the intention to deceive and cause harm.</p>
-                        </div>
-
-                    </div>
--->
-
-
-
-
-
-
-
-
-            </div>
-            <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="container-fluid">
-                    <div class="row mt-3">
-                        <div class="col-12 p-4">
-                            <p>SENTIMENT Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-                                make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-                            </p>
-                            <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                                <label for="floatingTextarea2">Comments</label>
+                            <div class="row">
+                                <div class="col p-2 mt-2">
+                                    <a href="#results" type="button" class="btn btn-primary btn-lg" onclick="submit_flag();">Flag as Fake</a>
+                                </div>
                             </div>
+
+
+
+
+
+
+
 
                         </div>
                     </div>
@@ -536,128 +611,137 @@
         }
 
 
-        function show_results(results) {
-            // Example results output - this would be populated by the database or API
-            // API data in still needs to be done, but this ensures the outputs are all working. 
 
-            //Conversting my JS object into a Array to utilse those features (namely for the out of score)
-            const maxScoreArray = (Object.keys(results));
+        // Example results output - this would be populated by the database or API
 
-            //Here I am taking the total number of items in the array and multiplying them by 100 to give us our percent score. 
-            const maxScore = 100
+        const resultsTemp = {
+            trust_score: 85,
+            sentiment_score: 100,
+            layout_score: 50,
+            complexity_score: 75,
+            author_score: 100,
+            platform_score: 100
+        };
+        // API data in still needs to be done, but this ensures the outputs are all working. 
 
-            //Calculating the total trust score, based on the paraments from the results object.
+        //Conversting my JS object into a Array to utilse those features (namely for the out of score)
+        const maxScoreArray = (Object.keys(resultsTemp));
 
-            //This is the basic method to print out the results on the page from each child element of the results object. This could be changed into a loop
-            var text = "<p>"
-            text += trust_score_label + space
-            text += "<strong>" + results["trust_score"] + "</strong>" + ", "
-            text += sentiment_score_label + space
-            text += "<strong>" + results["sentiment_score"] + "</strong>" + ", "
-            text += layout_score_label + space
-            text += "<strong>" + results["layout_score"] + "</strong>" + ", "
-            text += divergency_score_label + space
-            text += "<strong>" + results["divergency_score"] + "</strong>" + ", "
-            text += complexity_score_label + space
-            text += "<strong>" + results["complexity_score"] + "</strong>" + ", "
-            text += author_score_label + space
-            text += "<strong>" + results["author_score"] + "</strong>" + ", "
-            text += platform_score_label + space
-            text += "<strong>" + results["platform_score"] + "</strong>" + ". ";
-            text += "</p><p>"
-            text += results["reasons"]
-            text += "</p>"
-            document.getElementById("trust_index_results").innerHTML = text
+        //Here I am taking the total number of items in the array and multiplying them by 100 to give us our percent score. 
+        const maxScore = 100
 
-            //Display the total trust score, and the total amount out of, which is a variable based on inputs, commented above.
-            document.getElementById("trust_index").innerHTML = results["trust_score"] + space + "out of" + space + maxScore;
+        //Calculating the total trust score, based on the paraments from the results object.
 
+        //This is the basic method to print out the results on the page from each child element of the results object. This could be changed into a loop
+        var text = "<p>"
+        text += trust_score_label + space
+        text += "<strong>" + resultsTemp["trust_score"] + "</strong>" + ", "
+        text += sentiment_score_label + space
+        text += "<strong>" + resultsTemp["sentiment_score"] + "</strong>" + ", "
+        text += layout_score_label + space
+        text += "<strong>" + resultsTemp["layout_score"] + "</strong>" + ", "
+        text += divergency_score_label + space
+        text += "<strong>" + resultsTemp["divergency_score"] + "</strong>" + ", "
+        text += complexity_score_label + space
+        text += "<strong>" + resultsTemp["complexity_score"] + "</strong>" + ", "
+        text += author_score_label + space
+        text += "<strong>" + resultsTemp["author_score"] + "</strong>" + ", "
+        text += platform_score_label + space
+        text += "<strong>" + resultsTemp["platform_score"] + "</strong>" + ". ";
+        text += "</p><p>"
+        text += resultsTemp["reasons"]
+        text += "</p>"
+        document.getElementById("trust_index_results").innerHTML = text
 
-            //Converting the Results Objects into a values array, to use in the charts
-            const resultsValues = (Object.values(results));
-
-            //CHART.JS
-            let ctx = document.getElementById('trustIndexChart');
+        //Display the total trust score, and the total amount out of, which is a variable based on inputs, commented above.
+        document.getElementById("trust_index").innerHTML = resultsTemp["trust_score"] + space + "out of" + space + maxScore;
 
 
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: [trust_score_label, sentiment_score_label, layout_score_label, divergency_score_label, complexity_score_label, author_score_label, platform_score_label],
-                    datasets: [{
-                        label: 'Trust Index out of 100',
-                        data: resultsValues,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+        //Converting the Results Objects into a values array, to use in the charts
+        const resultsValues = (Object.values(resultsTemp));
+
+        //CHART.JS
+        let ctx = document.getElementById('trustIndexChart');
+
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [trust_score_label, sentiment_score_label, layout_score_label, divergency_score_label, complexity_score_label, author_score_label, platform_score_label],
+                datasets: [{
+                    label: 'Trust Index out of 100',
+                    data: [85, 100, 50, 75, 100, 100],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
                     }
                 }
-            });
-
-
-            // PIE CHARTS FOR TOTAL TRUTH INDEX SCORE
-
-            let truthIndexOutput = document.getElementById('trustIndexPie');
-
-            const data = {
-                labels: [
-                    'News Article Total Score out of 100',
-                    '100% Trusted'
-                ],
-                datasets: [{
-                    label: 'Total Trust Score',
-                    data: [results["trust_score"], maxScore],
-                    backgroundColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)'
-                    ],
-                    hoverOffset: 4
-                }]
-            };
-
-            var myPieChart = new Chart(truthIndexOutput, {
-                type: 'bar',
-                data: data
-            })
-
-
-            // This function checks to see if the results are greater than 500m if so then returns trusted var if not, then untrusted varaible. This can now be broadened out
-            function displayResults(a) {
-                let resultsInternal;
-                if (a > 50) {
-                    resultsInternal = trustedNews;
-                } else {
-                    resultsInternal = caustionNews;
-                }
-                return resultsInternal
             }
+        });
 
-            document.getElementById("trustedOrNot").innerHTML = displayResults(results["trust_score"]);
 
+        // PIE CHARTS FOR TOTAL TRUTH INDEX SCORE
+
+        let truthIndexOutput = document.getElementById('trustIndexPie');
+
+        const data = {
+            labels: [
+                'News Article Total Score out of 100',
+                '100% Trusted'
+            ],
+            datasets: [{
+                label: 'Total Trust Score',
+                data: resultsTemp,
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)'
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        var myPieChart = new Chart(truthIndexOutput, {
+            type: 'bar',
+            data: data
+        })
+
+
+        // This function checks to see if the results are greater than 500m if so then returns trusted var if not, then untrusted varaible. This can now be broadened out
+        function displayResults(a) {
+            let resultsInternal;
+            if (a > 50) {
+                resultsInternal = trustedNews;
+            } else {
+                resultsInternal = caustionNews;
+            }
+            return resultsInternal
         }
+
+        document.getElementById("trustedOrNot").innerHTML = displayResults(resultsTemp["trust_score"]);
+
+
 
         const results = {
             trust_score: 100,
@@ -669,6 +753,13 @@
             platform_score: 100
         };
 
+
+        function submit_text() {
+            alert("I am an alert box!");
+        }
+
+        /*
+        
         //show_results(results);
         function show_text(text) {
             document.getElementById("myText").innerHTML = text
@@ -766,7 +857,7 @@
             //var request_data = JSON.stringify(request);
             xmlhttp.send(url)
 
-        }
+        } */
     </script>
 
 
@@ -795,7 +886,14 @@
         }
     </script>
 
-
+    <script>
+        //show and hide the results sections, bit of a hack for now
+        $(document).ready(function() {
+            $(".buttonResults").click(function() {
+                $(".hide").toggleClass("hide");
+            });
+        });
+    </script>
 
 </body>
 
