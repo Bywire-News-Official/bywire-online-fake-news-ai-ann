@@ -367,6 +367,7 @@
                             <script>
                             </script>
                             <h2 class="text-center">Trust Score: <span id="trust_index"></span> </h2>
+                            <p class="text-center flags" onclick="submit_flag();">Flag as <span id="flagAsWhat"></span></p>
                         </div>
                     </div>
 
@@ -375,8 +376,8 @@
 
 
                 <div class="row hide">
-                    <div class="col p-2 mt-2">
-                        <a type="button" class="btn btn-primary btn-lg" onclick="submit_flag();">Flag as Fake</a>
+                    <div class="col p-2 ">
+
                     </div>
                 </div>
                 <div class="row mt-4 hide ">
@@ -713,7 +714,7 @@
         const resultsTemp = {
             "id": "b'e504826c5359763bfcfa6c51d9908becdbdd09d578b9e63f46a543e0c9d0b97de091e16e2c00e0f266ab8b46a553fef62d0217568ab400fd31b4511853e9d0c5'",
             "param_version": 5,
-            "trust_score": 65,
+            "trust_score": 20,
             "sentiment_score": 45,
             "divergency_score": 71,
             "layout_score": 100,
@@ -893,16 +894,20 @@
             },
         };
 
-
-
+        //This handles the inverse selection for flagging purpose, if the article is genunie, we should ask if it is fake, and the inverse
+        let flag = "";
+        const flagFake = "Fake";
+        const flagGenuine = "Genuine";
 
         // This function checks to see if the results are greater than 500m if so then returns trusted var if not, then untrusted varaible. This can now be broadened out
         function displayResults(news) {
             let resultsInternal;
             if (news > 50) {
                 resultsInternal = trustedNews;
+                flag = flagFake;
             } else {
                 resultsInternal = caustionNews;
+                flag = flagGenuine;
             }
             return resultsInternal
         }
@@ -911,7 +916,7 @@
 
         document.getElementById("trustedOrNot").innerHTML = displayResults(resultsTemp["trust_score"]);
 
-
+        document.getElementById("flagAsWhat").innerHTML = flag;
 
         const results = {
             trust_score: 100,

@@ -178,3 +178,8 @@ main {
 #trust_index_results {
     font-size: 1.2em;
 }
+
+.flags {
+    text-decoration: underline;
+    cursor: pointer;
+}
