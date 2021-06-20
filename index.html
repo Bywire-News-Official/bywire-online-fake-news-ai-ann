@@ -174,42 +174,90 @@
                             <h1>Is this News Fake or Genuine?</h1>
                             <hr />
 
-                            <p>Enter the website text into the field below:
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Enter the Article Title</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Pope Francis Shocks World, Endorses Donald Trump for President
+                                ">
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Enter the Article Author if known</label>
+                                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Joe Bloggs
+                                        ">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Publisher</label>
+                                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="BBC, CNN, WTOE 5, Guardian, The Times etc
+                                        ">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Website URL</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="https://tatersgonnatate.com/nyc-coroner-that-declared-epsteins-death-suicide-was-on-clinton-foundation-payroll-until-2015/
+                                ">
+                            </div>
+
+
+                            <p>Enter the website text into the field below
                             </p>
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="myText" style="height: 400px"></textarea>
+                                <textarea class="form-control" placeholder="Leave a comment here" id="myText" style="height: 300px"></textarea>
                                 <label for="myText">News Article</label>
                                 <span id="wordCount">0</span> Words
                             </div>
 
                             <div class="form-check form-check-inline mt-2">
-                                <fieldset>
-                                    <input class="form-check-input" type="checkbox" id="fakeornot" value="fakeornot" checked>
+                                <fieldset disabled>
+                                    <input class="form-check-input disabled" type="checkbox" id="fakeornot" value="fakeornot" checked>
                                     <label class="form-check-label" for="fakeornot">Fake or Genuine?</label>
                                 </fieldset>
                             </div>
 
                             <div class="form-check form-check-inline mt-2">
                                 <fieldset disabled>
-                                    <input class="form-check-input disabled" type="checkbox" id="inlineCheckbox1" value="option1">
+                                    <input class="form-check-input disabled" type="checkbox" id="inlineCheckbox1" value="option1" checked>
                                     <label class="form-check-label" for="inlineCheckbox1">Sentiment scores</label>
                                 </fieldset>
                             </div>
                             <div class="form-check form-check-inline">
                                 <fieldset disabled>
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">Layout analysis</label>
+                                    <input class="form-check-input" type="checkbox" id="layoutAnalysis" value="option2" checked>
+                                    <label class="form-check-label" for="layoutAnalysis">Layout analysis</label>
                                 </fieldset>
                             </div>
                             <div class="form-check form-check-inline">
                                 <fieldset disabled>
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                    <input class="form-check-input" type="checkbox" id="divergenceAnalysis" value="option2" checked>
+                                    <label class="form-check-label" for="divergenceAnalysis">Divergence</label>
+                                </fieldset>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="complexityAnalysis" value="option2" checked>
+                                    <label class="form-check-label" for="complexityAnalysis">Complexity</label>
+                                </fieldset>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" checked>
                                     <label class="form-check-label" for="inlineCheckbox3">Author score</label>
                                 </fieldset>
                             </div>
                             <div class="form-check form-check-inline">
                                 <fieldset disabled>
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4" checked>
                                     <label class="form-check-label" for="inlineCheckbox4">Publisher score</label>
                                 </fieldset>
                             </div>
@@ -353,8 +401,8 @@
 
                 <div class="row mt-4 hide">
                     <div class="col-md-12 p-2 mt-2">
-                        ADD EUPHORIA WARNINS
-                        <br /> Sentiment socres, take out of array and add create a new gauge <br /> Add in news article <br /> Do something with author and publisher scores <br />
+                        ADD ARTICLE TITILE + AUTHOR + POUBLISHER + WEBSITE + FIELDS + ADD EUPHORIA WARNINS + DATABASE FLAGS + BOOLEAN TRUE OR FALE
+                        <br /> Sentiment socres, take out of array and add create a new gauge <br /> Add in pre-loaded news article, AND MOVE FLAG AS FAKE <br /> Do something with author and publisher scores
                         <!--if (features["euphoria"] > 0.5): reasons.append("The tone is euphoric/depressed") if (features["punctuation"] > 0.5): reasons.append("Suspicious Puntuation") if (features["sentiment"] > 0.5): reasons.append("Suspicious Emotional Response") if (features["article_length"]
                         > 0.5): reasons.append("Article is shorter than expected") if (features["complexity_word_length"] > 0.5): reasons.append("Simlistic Word Use") if (features["complexity_duplication"] > 0.5): reasons.append("Repetitive Word Use")
                         if (features["complexity_complexity"] > 0.5): reasons.append("Suspicious Word Use") if (features["divergency"] > 0.5): reasons.append("Suspicious Incompatability between algorithms")
@@ -365,9 +413,10 @@
 
                 <div class="row mt-5 hide">
                     <div class="col-md-12 p-2 mt-2">
-                        <h1 class="py-2">Bywire Artificial Neural Network (B.A.N.N.)</h1>
+                        <h1 class="py-2">Bywire Artificial Neural Network (BANN)</h1>
                         <hr />
                         <h2>Was this analysis accurate? Input your suggestions below </h2>
+
                     </div>
                 </div>
 
@@ -700,6 +749,7 @@
         //this removes the last element of the array, which we are currently displaying in a different way, will come back to this and improve.
         trustIndexNew.pop();
 
+        trustIndexNew.splice(4, 2);
 
         let resultsForBarGraph = Object.values(trustIndexNew);
 
@@ -723,8 +773,8 @@
         trustIndexNew[1] = layout_score_label + trustIndexNew[1];
         trustIndexNew[2] = divergency_score_label + trustIndexNew[2];
         trustIndexNew[3] = complexity_score_label + trustIndexNew[3];
-        trustIndexNew[4] = author_score_label + trustIndexNew[4];
-        trustIndexNew[5] = platform_score_label + trustIndexNew[5];
+        //trustIndexNew[4] = author_score_label + trustIndexNew[4];
+        //trustIndexNew[5] = platform_score_label + trustIndexNew[5];
 
         //this functions adds in the entries of the key value pairs from our new trust index array new which temp stores the results 
         trustIndexNew.forEach((item) => {
@@ -733,8 +783,6 @@
             list.appendChild(li);
 
         })
-
-
 
 
         /* var text = "<ul>"
@@ -773,18 +821,18 @@
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: [sentiment_score_label, layout_score_label, divergency_score_label, complexity_score_label, author_score_label, platform_score_label],
+                labels: [sentiment_score_label, layout_score_label, divergency_score_label, complexity_score_label],
                 datasets: [{
                     label: 'Trust Index out of 100',
                     data: resultsForBarGraph,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.6)',
-                        'rgba(54, 162, 235, 0.6)',
-                        'rgba(255, 206, 86, 0.6)',
-                        'rgba(255, 26, 195, 0.6)',
-                        'rgba(75, 192, 192, 0.6)',
-                        'rgba(153, 102, 255, 0.6)',
-                        'rgba(255, 159, 64, 0.6)'
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 206, 86, 0.8)',
+                        'rgba(255, 26, 195, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(153, 102, 255, 0.8)',
+                        'rgba(255, 159, 64, 0.8)'
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
@@ -885,12 +933,15 @@
             $(".hide-progress").toggleClass("hide-progress");
         }
 
+        let progressTemp = document.getElementById("myProgress");
+
 
         // This is the progress bar js. It also fires the show hide functions and the scrolling function, which isn't quite right yet.
         var i = 0;
 
         function submit_text() {
             showHideProgress();
+            progressTemp.scrollIntoView();
             if (i == 0) {
                 i = 1;
                 var elem = document.getElementById("myBar");
