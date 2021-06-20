@@ -10,6 +10,7 @@ html {
 }
 
 a,
+ul,
 h1,
 h2,
 h3,
@@ -150,6 +151,30 @@ main {
     font-size: larger;
 }
 
+.hide {
+    display: none;
+}
+
+.hide-progress {
+    display: none;
+}
 
 
+/*.tab-content {
+    width: 100%;
+} */
 
+#myProgress {
+    width: 100%;
+    background-color: #ddd;
+}
+
+#myBar {
+    width: 1%;
+    height: 30px;
+    background-color: #741b81;
+}
+
+#trust_index_results {
+    font-size: 1.2em;
+}

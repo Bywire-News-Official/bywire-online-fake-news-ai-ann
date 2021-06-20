@@ -28,30 +28,7 @@
                 font-size: 3.5rem;
             }
         }
-        
-        .hide {
-            display: none;
-        }
-        
-        .hide-progress {
-            display: none;
-        }
-        /*.tab-content {
-            width: 100%;
-        } */
-        
-        #myProgress {
-            width: 100%;
-            background-color: #ddd;
-        }
-        
-        #myBar {
-            width: 1%;
-            height: 30px;
-            background-color: #741b81;
-        }
     </style>
-
 
 </head>
 
@@ -114,6 +91,15 @@
         <symbol id="geo-fill" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z"/>
         </symbol>
+        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+          </symbol>
+          <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+          </symbol>
+          <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+          </symbol>
       </svg>
 
     <main>
@@ -266,7 +252,7 @@
 
                     <div class="row hide" id="results">
                         <div class="col p-2 mt-2">
-                            <h2>Results</h2>
+                            <h1>Results</h1>
                             <hr />
                         </div>
                     </div>
@@ -301,7 +287,7 @@
                     <div class="row hide mt-3">
                         <div class="col-md-6 p-2">
 
-                            <h1 id="trustedOrNot"></h1>
+                            <h2 id="trustedOrNot"></h2>
 
 
                             <ul class="" id="trust_index_results">
@@ -344,21 +330,16 @@
                     </div>
                 </div>
                 <div class="row mt-4 hide ">
-                    <div class="col-md-6 p-2 mt-2">
-
-
-                        <canvas id="trustIndexPie" width="100%" height="100%"></canvas>
-
-
-                    </div>
 
 
 
-
-                    <div class="col-md-6 p-2 mt-2">
+                    <div class="col-md-12 p-2 mt-2">
 
 
                         <canvas id="trustIndexChart" width="100%" height="100%"></canvas>
+
+
+
 
 
                     </div>
@@ -525,11 +506,11 @@
                 <div class="container-fluid">
                     <div class="row mt-3">
                         <div class="col-12 p-4">
-                            <p>EMTOINS Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                                a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                                Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
-                            </p>
+
+
+
+
                             <div class="form-floating">
                                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
                                 <label for="floatingTextarea2">Comments</label>
@@ -619,8 +600,10 @@
         const author_score_label = "Author: ";
         const platform_score_label = "Publisher: ";
         const space = " ";
-        const trustedNews = "This article is trustworthy"
-        const caustionNews = "WARNING: This article may not be trustworthy."
+        const genuine = "Genuine!";
+        const fake = "WARNING FAKE NEWS!";
+        const trustedNews = '<div class="alert alert-success d-flex align-items-center" role="alert">' + '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>' + '<div>' + "<strong>" + genuine + "</strong>" + "</div>" + "</div>";
+        const caustionNews = '<div class="alert alert-danger d-flex align-items-center" role="alert">' + '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>' + '<div>' + "<strong>" + fake + "</strong>" + "</div>" + "</div>";
 
         var requests = {}
         var current_id = ""
@@ -635,13 +618,10 @@
 
 
 
-        // Example results output - this would be populated by the database or API
-
-
         const resultsTemp = {
             "id": "b'e504826c5359763bfcfa6c51d9908becdbdd09d578b9e63f46a543e0c9d0b97de091e16e2c00e0f266ab8b46a553fef62d0217568ab400fd31b4511853e9d0c5'",
             "param_version": 5,
-            "trust_score": 68,
+            "trust_score": 12,
             "sentiment_score": 45,
             "divergency_score": 71,
             "layout_score": 100,
@@ -678,6 +658,12 @@
         trustIndexNew.pop();
 
 
+        let resultsForBarGraph = Object.values(trustIndexNew);
+
+        resultsForBarGraph.shift()
+
+
+
         //this creates a new lists and stores the UL html
         let list = document.getElementById("trust_index_results");
 
@@ -685,23 +671,22 @@
         var gauge = new Gauge(document.getElementById("gauge"));
         //I am just dividing by 100 to turn it into a score out of 0-1 (percent)
         gauge.value(trustIndexNew[0] / 100);
-        console.log(trustIndexNew[0])
 
         //Here we are relabelling each value in our array with the correct labels. This is much better than creating the html elements. Again, I should now put the labels into an object or array and loop over
-        trustIndexNew[0] = trust_score_label + trustIndexNew[0];
-        trustIndexNew[1] = sentiment_score_label + trustIndexNew[1];
-        trustIndexNew[2] = layout_score_label + trustIndexNew[2];
-        trustIndexNew[3] = divergency_score_label + trustIndexNew[3];
-        trustIndexNew[4] = complexity_score_label + trustIndexNew[4];
-        trustIndexNew[5] = author_score_label + trustIndexNew[5];
-        trustIndexNew[6] = platform_score_label + trustIndexNew[6];
+
+        trustIndexNew.shift(); //Removing the first item of the array, as we no longer need to display the trust score. Therefore, removing it before I build the UL 
+
+        trustIndexNew[0] = sentiment_score_label + trustIndexNew[0];
+        trustIndexNew[1] = layout_score_label + trustIndexNew[1];
+        trustIndexNew[2] = divergency_score_label + trustIndexNew[2];
+        trustIndexNew[3] = complexity_score_label + trustIndexNew[3];
+        trustIndexNew[4] = author_score_label + trustIndexNew[4];
+        trustIndexNew[5] = platform_score_label + trustIndexNew[5];
 
         //this functions adds in the entries of the key value pairs from our new trust index array new which temp stores the results 
         trustIndexNew.forEach((item) => {
             let li = document.createElement("li");
-            let strong = document.createElement("strong");
             li.innerText = item;
-            list.appendChild(strong);
             list.appendChild(li);
 
         })
@@ -741,21 +726,23 @@
         let ctx = document.getElementById('trustIndexChart');
 
 
+        console.log("results: " + resultsForBarGraph);
+
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: [trust_score_label, sentiment_score_label, layout_score_label, divergency_score_label, complexity_score_label, author_score_label, platform_score_label],
+                labels: [sentiment_score_label, layout_score_label, divergency_score_label, complexity_score_label, author_score_label, platform_score_label],
                 datasets: [{
                     label: 'Trust Index out of 100',
-                    data: [85, 100, 50, 75, 100, 100],
+                    data: resultsForBarGraph,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(255, 26, 195, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)'
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
@@ -779,42 +766,21 @@
         });
 
 
-        // PIE CHARTS FOR TOTAL TRUTH INDEX SCORE
 
-        let truthIndexOutput = document.getElementById('trustIndexPie');
-
-        const data = {
-            labels: [
-                'News Article Total Score out of 100',
-                '100% Trusted'
-            ],
-            datasets: [{
-                label: 'Total Trust Score',
-                data: resultsTemp,
-                backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)'
-                ],
-                hoverOffset: 4
-            }]
-        };
-
-        var myPieChart = new Chart(truthIndexOutput, {
-            type: 'bar',
-            data: data
-        })
 
 
         // This function checks to see if the results are greater than 500m if so then returns trusted var if not, then untrusted varaible. This can now be broadened out
-        function displayResults(a) {
+        function displayResults(news) {
             let resultsInternal;
-            if (a > 50) {
+            if (news > 50) {
                 resultsInternal = trustedNews;
             } else {
                 resultsInternal = caustionNews;
             }
             return resultsInternal
         }
+
+
 
         document.getElementById("trustedOrNot").innerHTML = displayResults(resultsTemp["trust_score"]);
 
@@ -865,6 +831,8 @@
                 }
             }
         }
+
+
 
 
         /*
@@ -979,9 +947,10 @@
                 },
                 200
             );
-
         }
     </script>
+
+
 
 </body>
 
