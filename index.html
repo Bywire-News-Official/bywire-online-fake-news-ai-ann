@@ -122,6 +122,11 @@
                     </a>
                 </li>
                 <li class="nav-item mt-3">
+                    <a href="#" class="nav-link text-white" id="settings-tab" data-bs-toggle="pill" data-bs-target="#photos" type="button" role="tab" aria-controls="settings" aria-selected="false">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg> Fake Memes + Photos
+                    </a>
+                </li>
+                <li class="nav-item mt-3">
                     <a href="#" class="nav-link text-white" id="messages-tab" data-bs-toggle="pill" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">
                         <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg> Real-time Fake News
                     </a>
@@ -290,9 +295,6 @@
                             <h2 id="trustedOrNot"></h2>
 
 
-                            <ul class="" id="trust_index_results">
-
-                            </ul>
 
                         </div>
 
@@ -331,15 +333,19 @@
                 </div>
                 <div class="row mt-4 hide ">
 
+                    <div class="col-md-2 p-2 mt-2">
 
+                        <ul class="mt-5" id="trust_index_results">
 
-                    <div class="col-md-12 p-2 mt-2">
+                        </ul>
+                    </div>
+
+                    <div class="col-md-1 p-2 mt-2"></div>
+
+                    <div class="col-md-9 p-2 mt-2">
 
 
                         <canvas id="trustIndexChart" width="100%" height="100%"></canvas>
-
-
-
 
 
                     </div>
@@ -520,6 +526,18 @@
                     </div>
                 </div>
             </div>
+            <div class="tab-pane" id="photos" role="tabpanel" aria-labelledby="photos-tab">
+                <div class="container-fluid">
+                    <div class="row mt-3">
+                        <div class="col-12 p-4">
+
+
+                            PHOTOS
+
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                 <div class="container-fluid">
                     <div class="row mt-3">
@@ -621,7 +639,7 @@
         const resultsTemp = {
             "id": "b'e504826c5359763bfcfa6c51d9908becdbdd09d578b9e63f46a543e0c9d0b97de091e16e2c00e0f266ab8b46a553fef62d0217568ab400fd31b4511853e9d0c5'",
             "param_version": 5,
-            "trust_score": 12,
+            "trust_score": 65,
             "sentiment_score": 45,
             "divergency_score": 71,
             "layout_score": 100,
@@ -694,7 +712,6 @@
 
 
 
-
         /* var text = "<ul>"
          text += trust_score_label + space
          text += "<li>" + resultsTemp["trust_score"] + "</li>" + ", "
@@ -757,6 +774,24 @@
                 }]
             },
             options: {
+                indexAxis: 'y',
+                // Elements options apply to all of the options unless overridden in a dataset
+                // In this case, we are setting the border of each horizontal bar to be 2px wide
+                elements: {
+                    bar: {
+                        borderWidth: 2,
+                    }
+                },
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Trust Index Scores'
+                    }
+                },
                 scales: {
                     y: {
                         beginAtZero: true
@@ -765,6 +800,25 @@
             }
         });
 
+
+
+        //sentiment pie chart 
+        const config = {
+            type: 'pie',
+            data: [45, 71, 100, 50, 100, 100],
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Chart.js Pie Chart'
+                    }
+                }
+            },
+        };
 
 
 
