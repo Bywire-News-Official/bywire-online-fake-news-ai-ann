@@ -32,6 +32,10 @@
         .hide {
             display: none;
         }
+        
+        .hide-progress {
+            display: none;
+        }
         /*.tab-content {
             width: 100%;
         } */
@@ -174,7 +178,7 @@
 
                 <div class="container">
                     <div class="row mt-3">
-                        <div class="col-12 p-2">
+                        <div class="col-12 p-2 submissionForm">
 
                             <h1>Is this News Fake or Genuine?</h1>
                             <hr />
@@ -243,29 +247,15 @@
 
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row submissionForm">
                         <div class="col p-2 mt-2">
-                            <a href="#results" type="button" class="btn btn-primary btn-lg buttonResults" onclick="submit_text();">Begin Analysis</a>
+                            <a type="button" class="btn btn-primary btn-lg buttonResults" onclick="submit_text();">Begin Analysis</a>
                         </div>
                     </div>
-                    <div class="row hide">
-                        <div class="col p-2 mt-2">
-                            <a href="#results" type="button" class="btn btn-primary btn-lg" onclick="submit_flag();">Flag as Fake</a>
-                        </div>
-                    </div>
+
 
                     <!--BEGIN RESULTS SECTION-->
-
-
-                    <div class="row hide">
-                        <div class="col p-2 mt-2">
-                            <h2>Results</h2>
-                            <hr />
-                        </div>
-                    </div>
-
-
-                    <div class="row hide">
+                    <div class="row hide-progress">
                         <div class="col p-2 mt-2">
                             <div id="myProgress">
                                 <div id="myBar"></div>
@@ -273,6 +263,16 @@
 
                         </div>
                     </div>
+
+                    <div class="row hide" id="results">
+                        <div class="col p-2 mt-2">
+                            <h2>Results</h2>
+                            <hr />
+                        </div>
+                    </div>
+
+
+
 
                     <!--    <div class="row mt-4">
                         <div class="col-6 p-2 mt-2">
@@ -312,7 +312,6 @@
 
 
 
-
                         <div class="col-md-6 p-2">
                             <div class="gauge gauge--liveupdate" id="gauge">
                                 <div class="gauge__container">
@@ -338,6 +337,12 @@
 
                 </div>
 
+
+                <div class="row hide">
+                    <div class="col p-2 mt-2">
+                        <a type="button" class="btn btn-primary btn-lg" onclick="submit_flag();">Flag as Fake</a>
+                    </div>
+                </div>
                 <div class="row mt-4 hide ">
                     <div class="col-md-6 p-2 mt-2">
 
@@ -825,10 +830,22 @@
             platform_score: 100
         };
 
+        //this functions wraps jquery into js and then removes the hide class if present - displays the results
+        function showHide() {
+            $(".hide").toggleClass("hide");
+        }
 
+        //As we need to show the progress bar first, we have a dedicated function for this
+        function showHideProgress() {
+            $(".hide-progress").toggleClass("hide-progress");
+        }
+
+
+        // This is the progress bar js. It also fires the show hide functions and the scrolling function, which isn't quite right yet.
         var i = 0;
 
         function submit_text() {
+            showHideProgress();
             if (i == 0) {
                 i = 1;
                 var elem = document.getElementById("myBar");
@@ -839,6 +856,7 @@
                     if (width >= 100) {
                         clearInterval(id);
                         i = 0;
+                        showHide();
                         scrollBottom();
                     } else {
                         width++;
@@ -846,14 +864,7 @@
                     }
                 }
             }
-
-
-
         }
-
-
-
-
 
 
         /*
@@ -960,20 +971,14 @@
 
 
     <script>
-    </script>
-
-    <script>
-        //show and hide the results sections, bit of a hack for now
-        $(document).ready(function() {
-            $(".buttonResults").click(function() {
-                $(".hide").toggleClass("hide");
-            });
-        });
-    </script>
-
-    <script>
         function scrollBottom() {
-            window.scrollTo(0, document.body.scrollHeight);
+            setTimeout(function() {
+                    //window.scrollTo(0, document.body.scrollHeight);
+                    let element = document.getElementById("results");
+                    element.scrollIntoView();
+                },
+                200
+            );
 
         }
     </script>
