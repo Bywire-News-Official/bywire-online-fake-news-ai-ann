@@ -106,7 +106,7 @@
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
 
-                <span class="fs-4">Bywire News Toolkit</span>
+                <span class="fs-4">Bywire News AI Tools</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto" id="bwTabs" role="tablist">
@@ -173,6 +173,21 @@
 
                             <h1>Is this News Fake or Genuine?</h1>
                             <hr />
+                            <div class="alert alert-info" role="alert">
+                                <h4 class="alert-heading">Hackathon only!</h4>
+                                <label for="simDataList" class="form-label">Simulate Results</label>
+                                <input class="form-control" list="datalistOptions" id="simDataList" placeholder="Examples of Fake and Real News">
+                                <datalist id="datalistOptions">
+      <option value="FAKE: NYC Coroner That Declared Epstein’s Death ‘Suicide’ Was on Clinton Foundation Payroll Until 2015">
+      <option value="Genunie: Ethiopians to vote in what government bills as first free election">
+      <option value="Seattle">
+      <option value="Los Angeles">
+      <option value="Chicago">
+    </datalist>
+                            </div>
+
+
+
 
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Enter the Article Title</label>
@@ -402,7 +417,7 @@
 
                 <div class="row mt-4 hide">
                     <div class="col-md-12 p-2 mt-2">
-                        ADD ARTICLE TITILE + AUTHOR + POUBLISHER + WEBSITE + FIELDS + ADD EUPHORIA WARNINS + DATABASE FLAGS + BOOLEAN TRUE OR FALE
+                        ADD EUPHORIA WARNINS + DATABASE FLAGS + BOOLEAN TRUE OR FALE
                         <br /> Sentiment socres, take out of array and add create a new gauge <br /> Add in pre-loaded news article, AND MOVE FLAG AS FAKE <br /> Do something with author and publisher scores
                         <!--if (features["euphoria"] > 0.5): reasons.append("The tone is euphoric/depressed") if (features["punctuation"] > 0.5): reasons.append("Suspicious Puntuation") if (features["sentiment"] > 0.5): reasons.append("Suspicious Emotional Response") if (features["article_length"]
                         > 0.5): reasons.append("Article is shorter than expected") if (features["complexity_word_length"] > 0.5): reasons.append("Simlistic Word Use") if (features["complexity_duplication"] > 0.5): reasons.append("Repetitive Word Use")
@@ -714,7 +729,7 @@
         const resultsTemp = {
             "id": "b'e504826c5359763bfcfa6c51d9908becdbdd09d578b9e63f46a543e0c9d0b97de091e16e2c00e0f266ab8b46a553fef62d0217568ab400fd31b4511853e9d0c5'",
             "param_version": 5,
-            "trust_score": 20,
+            "trust_score": 65,
             "sentiment_score": 45,
             "divergency_score": 71,
             "layout_score": 100,
@@ -1083,6 +1098,44 @@
                 200
             );
         }
+    </script>
+
+    <script>
+        //Simluation results data packages
+
+        /*const resultsTemp = {
+            "id": "b'e504826c5359763bfcfa6c51d9908becdbdd09d578b9e63f46a543e0c9d0b97de091e16e2c00e0f266ab8b46a553fef62d0217568ab400fd31b4511853e9d0c5'",
+            "param_version": 5,
+            "trust_score": 65,
+            "sentiment_score": 45,
+            "divergency_score": 71,
+            "layout_score": 100,
+            "complexity_score": 50,
+            "platform_score": 100,
+            "author_score": 100,
+            "reasons": [
+                "Article tone is Euphoric/Depressed",
+                "Suspicious Word Use"
+            ]
+        }; */
+
+        //https://bywire.news/articles/ethiopians-to-vote-in-what-government-bills-as-first-free-election
+
+        //Ethiopians to vote in what government bills as first free election
+        // By Dawit Endeshaw and Ayenat Mersie
+        // Bywire News
+
+        //ADDIS ABABA - Ethiopians vote on Monday in national and regional elections that the prime minister has billed as proof of his commitment to democracy after decades of repressive rule in Africa's second-most populous nation. Prime Minister Abiy Ahmed, 44, oversaw sweeping political and economic reforms after his appointment in 2018 by the ruling coalition. But some rights activists say those gains are being reversed and complain of abuses in a war in Ethiopia's Tigray region, charges the government denies. Abiy said last week the vote would be the \"first attempt at free and fair elections\" in Ethiopia, whose once rapidly growing economy has been hit by conflict and the COVID-19 pandemic. Results of the vote could reverberate beyond Ethiopia. The Horn of Africa nation is a diplomatic heavyweight in a volatile region, providing peacekeepers to Somalia, Sudan and South Sudan. It also is one of the world's biggest frontier markets. Abiy's newly-formed Prosperity Party is the frontrunner in a crowded field of candidates mostly from smaller, ethnically-based parties. Billboards with his party's lightbulb symbol adorn the capital. Former political prisoner Berhanu Nega is the only other prominent candidate not running on an ethnic ticket. But his Ethiopian Citizens for Social Justice party has struggled to attract support outside cities. During the last election, the ruling coalition and its allies won all 547 seats. This time, more than 37 million of Ethiopia's 109 million people are registered to vote, choosing from 46 parties for parliament. The electoral board says more candidates are running this time than in any previous vote. Not all parties are taking part. In Oromiya, Ethiopia's most populous province, the largest opposition parties are boycotting over alleged intimidation by regional security forces. Officials did not return calls seeking comment. Problems with voting registration and simmering ethnic violence have delayed voting in a fifth of constituencies. A second round of voting will take place in September. No date has been set for voting in Tigray, where the government has been fighting the region's former governing party, the Tigray People's Liberation Front, since November. The United Nations says some 350,000 people face famine there. 'ALMOST A DEMOCRACY'. Drinking a beer in the capital Addis Ababa, retired civil servant Yohannes Asrat said he had seen both force and rigging during elections in his lifetime but hoped Monday's vote would be different. "We're almost a democracy," he said. Abiy's reforms include lifting a ban on dozens of political parties and media outlets, releasing tens of thousands of political prisoners and easing restrictions on political gatherings. But Fisseha Tekle from rights group Amnesty International said the government was still quashing dissent using a revised anti-terrorism law and new hate speech legislation that can lead to prison terms for online content. "The government is using these laws to arrest people and keep them in prison for a long time," Fisseha said. In the capital, many construction projects have paused as growth has slowed in what until recently was one of Africa's fastest expanding economies, leaving tattered sheeting covering skeletons of unfinished buildings. Many voters are more concerned about reviving the economy than democratic reforms. Abiy has promised to bring in foreign investment and speed up electrification by filling a giant $4 billion hydropower dam on the Blue Nile, stoking tension with Egypt and Sudan, which fear the Nile water supplies they rely on might be interrupted. But annual inflation is now about 20% and growth is forecast at just 2% this year after topping 10% before the pandemic. \"The cost of living is increasing,\" said shopkeeper Murad Merga, whose window was adorned with ruling party posters. But he remained upbeat: \"Everything will be fixed step by step.\"
+
+
+        const preloadArticles = {
+            "fake_story_1": [
+                "title": "NYC Coroner That Declared Epstein’s Death ‘Suicide’ Was on Clinton Foundation Payroll Until 2015",
+                "publisher": "Taters Gonna Tate",
+                "author": "Flagg Eagleton-Patriot",
+                "article content": "An independent investigation by credible sources that may or may not be tied to the federal task force to investigate the Clintons has found that the New York City coroner who signed Jeffrey Epstein’s death cerificate was on the Clinton Foundation’s Board of Trustees until 2015. This report, which is an alleged excerpt from the Foundation’s public filings, has not been doctored at all. It shows clearly that Eric Braverman, the same man who declared Epstein’s death a suicide, made nearly $500K in 2015 for a cushy 45-hour per week job. At first, our investigators were skeptical, because the Coroner’s name isn’t technically \"Eric Braverman\" at all. It’s Dr. Arturo Tubbolski under the assumed name of Greg. Our investigator in the field, Skip Tetheluda, explains\" Greg was first hired as Art, but then his roommate transitioned from Leon to Linda, which made him a little uncomfortable. He moved in with Chelsea Clinton’s best friend from Dartmouth and before long he had taken over the position of Eric Braverman, the Foundation’s chief Operating Officer. We believe the real Braverman is buried wherever they put Vince Foster and Dimitri Noonan. Anyway, the fact that both men are listed makes this a slam dunk, yet the New York Attorney General, Sandiford Batt, won’t press charges. It’s a clear-cut caes of the Deep State covering their crimes.” Well if that doesn’t make perfect sense then nothing does. At this point, this Greg character needs to be found and locked up. According to the City of New York, he never worked there at all. Because Epstein has no family and left no will, there’s nobody to contest it. At least it’s finally over. We’ll never know how many of Clinton’s 26 trips were actually true now."
+            ]
+        };
     </script>
 
 
