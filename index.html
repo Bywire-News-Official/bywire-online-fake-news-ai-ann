@@ -783,8 +783,8 @@
 
 
 
-        var requests = {}
-        var current_id = ""
+        var requests = {};
+        var current_id = "";
 
         function show_progress(done, progress) {
             var status_str = (done) ? "Analyzing..." : "Ready."
@@ -808,7 +808,8 @@
             "author_score": 100,
             "reasons": [
                 "The tone is euphoric/depressed",
-                "Suspicious Word Use"
+                "Suspicious Word Use",
+                "Suspicious Emotional Response"
             ]
         };
 
@@ -836,46 +837,25 @@
         };
 
 
+        //document.write(resultsTemp["reasons"].join(' '));
 
+        //This will print out the correct messages while mapping them
         let reasonMessages = [];
 
         resultsTemp["reasons"].forEach(item => {
             let newReason = mapping[item];
-            reasonMessages.push(("<p>" + newReason + "</p>"));
+            reasonMessages.push("<p>" + newReason + "</p>");
         });
 
-        console.log(reasonMessages);
-
+        //The array printed out the comma, so this removes it
+        let removeComma = () => {
+            reasonMessages = reasonMessages.join(' '); // using join() method.
+        }
+        removeComma();
+        //print out the final error messages
         document.getElementById("messageResultsAnal").innerHTML = reasonMessages;
 
 
-        //array.lnegth - to work out the total length of the aray, and then pinrt out all contents
-
-        //const messageResults = trustIndexNew.filter(isBigEnough);
-
-        //document.getElementById("messageResultsAnal").innerHTML = resultsTemp.this.
-        //"sentiment_score");
-
-        /*let messageBuilder = "<p>"
-
-        if (resultsTemp["sentiment_score"] >= 50) {
-            //document.getElementById("messageResultsAnal").innerHTML = sentiment_label_message;
-            messageBuilder += sentiment_label_message + "</p>"
-        }
-        if (resultsTemp["divergency_score"] >= 50) {
-            //document.getElementById("messageResultsAnal").innerHTML += divergency_label_message;
-            messageBuilder += divergency_label_message + "</p>"
-        }
-        if (resultsTemp["divergency_score"] >= 50) {
-            //document.getElementById("messageResultsAnal").innerHTML += divergency_label_message;
-            messageBuilder += divergency_label_message + "</p>"
-        } */
-
-
-
-
-
-        //document.getElementById("messageResultsAnal").innerHTML = messageBuilder;
 
         // API data in still needs to be done, but this ensures the outputs are all working. 
 
@@ -898,11 +878,6 @@
         trustIndexNew.pop();
 
 
-
-
-        //let messageResults = resultsTemp.filter(isBigEnough);
-
-        //document.getElementById("messageResults").innerHTML = isBigEnough(resultsTemp);
 
         //I have retrofitted these graphs at this point in the dom so they can populate the gauges, before these values are removed from the array for displaying purposes. Should rethink this, change the headers of each gauge into the array items, headings (keys) & values.
         //This will also act as a checksum for the guage output, althopugh it has been manually checked in the console
