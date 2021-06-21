@@ -334,6 +334,7 @@
                         <div class="col-md-6 p-2">
 
                             <h2 id="trustedOrNot"></h2>
+                            <p id="openingAnalysisMessage"></p>
                             <div id="messageResultsAnal">
 
                             </div>
@@ -799,7 +800,7 @@
         const resultsTemp = {
             "id": "b'e504826c5359763bfcfa6c51d9908becdbdd09d578b9e63f46a543e0c9d0b97de091e16e2c00e0f266ab8b46a553fef62d0217568ab400fd31b4511853e9d0c5'",
             "param_version": 5,
-            "trust_score": 55,
+            "trust_score": 65,
             "sentiment_score": 45,
             "divergency_score": 71,
             "layout_score": 100,
@@ -808,8 +809,7 @@
             "author_score": 100,
             "reasons": [
                 "The tone is euphoric/depressed",
-                "Suspicious Word Use",
-                "Suspicious Emotional Response"
+                "Suspicious Word Use"
             ]
         };
 
@@ -838,6 +838,10 @@
 
 
         //document.write(resultsTemp["reasons"].join(' '));
+
+        lengthOfReasons = resultsTemp["reasons"].length;
+
+
 
         //This will print out the correct messages while mapping them
         let reasonMessages = [];
@@ -1050,6 +1054,7 @@
         let flag = "";
         const flagFake = "Fake";
         const flagGenuine = "Genuine";
+        let openingAnalysisMessage = "";
 
         // This function checks to see if the results are greater than 500m if so then returns trusted var if not, then untrusted varaible. This can now be broadened out
         function displayResults(news) {
@@ -1057,9 +1062,11 @@
             if (news > 50) {
                 resultsInternal = trustedNews;
                 flag = flagFake;
+                openingAnalysisMessage = genuineMessage1;
             } else {
                 resultsInternal = caustionNews;
                 flag = flagGenuine;
+                openingAnalysisMessage = fakeMessage1;
             }
             return resultsInternal
         };
@@ -1070,6 +1077,14 @@
         document.getElementById("trustedOrNot").innerHTML = displayResults(resultsTemp["trust_score"]);
 
         document.getElementById("flagAsWhat").innerHTML = flag;
+
+        function showOpeningReasonsMessage() {
+            if (lengthOfReasons > 0) {
+                document.getElementById("openingAnalysisMessage").innerHTML = openingAnalysisMessage;
+            }
+        }
+
+        showOpeningReasonsMessage();
 
         const results = {
             trust_score: 100,
