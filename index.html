@@ -100,6 +100,9 @@
           <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
             <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
           </symbol>
+          <symbol id="flag-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001"/>
+        </symbol>
       </svg>
 
     <main>
@@ -179,10 +182,8 @@
                                 <input class="form-control" list="datalistOptions" id="simDataList" placeholder="Examples of Fake and Real News">
                                 <datalist id="datalistOptions">
       <option value="FAKE: NYC Coroner That Declared Epstein’s Death ‘Suicide’ Was on Clinton Foundation Payroll Until 2015">
-      <option value="Genunie: Ethiopians to vote in what government bills as first free election">
-      <option value="Seattle">
-      <option value="Los Angeles">
-      <option value="Chicago">
+      <option value="GENUINE: Ethiopians to vote in what government bills as first free election">
+
     </datalist>
                             </div>
 
@@ -356,9 +357,8 @@
                         <div class="col-md-6 p-2">
 
                             <h2 id="trustedOrNot"></h2>
-
-
-
+                            <p>INSERT WARNING FOR REASONS/EUPHORIA HERE PLUS RATIONALE PERFECT</p>
+                            <p>[ADD IF STATEMENTS] <svg class="bi me-2" width="16" height="16"><use xlink:href="#flag-fill"/></svg>Warning, found on fake database</p>
                         </div>
 
 
@@ -379,8 +379,7 @@
                                 </div>
                             </div>
                             <script src="material-gauge.js"></script>
-                            <script>
-                            </script>
+
                             <h2 class="text-center">Trust Score: <span id="trust_index"></span> </h2>
                             <p class="text-center flags" onclick="submit_flag();">Flag as <span id="flagAsWhat"></span></p>
                         </div>
@@ -415,14 +414,74 @@
                     </div>
                 </div>
 
+                <div class="row mt-5 hide text-center">
+
+
+
+                    <div class="col p-2 mt-2">
+                        <h3 class="mb-3">Sentiment: <span id="trust_index">45</span></h3>
+
+                        <div class="gauge gauge--liveupdate" id="gauge-sentiment">
+                            <div class="gauge__container">
+                                <div class="gauge__marker"></div>
+                                <div class="gauge__background"></div>
+                                <div class="gauge__center"></div>
+                                <div class="gauge__data"></div>
+                                <div class="gauge__needle"></div>
+                            </div>
+                            <div class="gauge__labels mdl-typography__headline">
+                                <span class="gauge__label--low">Negative</span>
+                                <span class="gauge__label--spacer"></span>
+                                <span class="gauge__label--high">Positive</span>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="col p-2 mt-2">
+                        <h3 class="mb-3">Author: <span id="trust_index">100</span></h3>
+
+                        <div class="gauge gauge--liveupdate" id="gauge-author">
+                            <div class="gauge__container">
+                                <div class="gauge__marker"></div>
+                                <div class="gauge__background"></div>
+                                <div class="gauge__center"></div>
+                                <div class="gauge__data"></div>
+                                <div class="gauge__needle"></div>
+                            </div>
+                            <div class="gauge__labels mdl-typography__headline">
+                                <span class="gauge__label--low">Caution</span>
+                                <span class="gauge__label--spacer"></span>
+                                <span class="gauge__label--high">Trustworthy</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col p-2 mt-2">
+                        <h3 class="mb-3">Publishers: <span id="trust_index">100</span></h3>
+
+                        <div class="gauge gauge--liveupdate" id="gauge-publishers">
+                            <div class="gauge__container">
+                                <div class="gauge__marker"></div>
+                                <div class="gauge__background"></div>
+                                <div class="gauge__center"></div>
+                                <div class="gauge__data"></div>
+                                <div class="gauge__needle"></div>
+                            </div>
+                            <div class="gauge__labels mdl-typography__headline">
+                                <span class="gauge__label--low">Caution</span>
+                                <span class="gauge__label--spacer"></span>
+                                <span class="gauge__label--high">Trustworthy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row mt-4 hide">
                     <div class="col-md-12 p-2 mt-2">
-                        ADD EUPHORIA WARNINS + DATABASE FLAGS + BOOLEAN TRUE OR FALE
-                        <br /> Sentiment socres, take out of array and add create a new gauge <br /> Add in pre-loaded news article, AND MOVE FLAG AS FAKE <br /> Do something with author and publisher scores
-                        <!--if (features["euphoria"] > 0.5): reasons.append("The tone is euphoric/depressed") if (features["punctuation"] > 0.5): reasons.append("Suspicious Puntuation") if (features["sentiment"] > 0.5): reasons.append("Suspicious Emotional Response") if (features["article_length"]
-                        > 0.5): reasons.append("Article is shorter than expected") if (features["complexity_word_length"] > 0.5): reasons.append("Simlistic Word Use") if (features["complexity_duplication"] > 0.5): reasons.append("Repetitive Word Use")
-                        if (features["complexity_complexity"] > 0.5): reasons.append("Suspicious Word Use") if (features["divergency"] > 0.5): reasons.append("Suspicious Incompatability between algorithms")
-                       -->
+
+
                     </div>
                 </div>
 
@@ -431,7 +490,27 @@
                     <div class="col-md-12 p-2 mt-2">
                         <h1 class="py-2">Bywire Artificial Neural Network (BANN)</h1>
                         <hr />
-                        <h2>Was this analysis accurate? Input your suggestions below </h2>
+                        <div class="row">
+                            <div class="col-6">
+                                <h2 class="mb-5">Was this analysis accurate? Input your suggestions below </h2>
+
+                                <label for="customRange3" class="form-label">How would you rate this analysis?</label>
+                                <input type="range" value="1" name="rangeInput" class="form-range" min="1" max="10" step="1" id="customRange3" onchange="updateTextInput(this.value);">
+
+
+                                <input type="text" id="textInput" value="1">
+                            </div>
+                            <div class="col-6">
+
+                            </div>
+                        </div>
+
+
+                        <script>
+                            function updateTextInput(val) {
+                                document.getElementById('textInput').value = val;
+                            }
+                        </script>
 
                     </div>
                 </div>
@@ -729,7 +808,7 @@
         const resultsTemp = {
             "id": "b'e504826c5359763bfcfa6c51d9908becdbdd09d578b9e63f46a543e0c9d0b97de091e16e2c00e0f266ab8b46a553fef62d0217568ab400fd31b4511853e9d0c5'",
             "param_version": 5,
-            "trust_score": 65,
+            "trust_score": 15,
             "sentiment_score": 45,
             "divergency_score": 71,
             "layout_score": 100,
@@ -749,7 +828,7 @@
 
         //Conversting my JS object into a Array to utilse those features (namely for the out of score)
         const maxScoreArray = (Object.keys(resultsTemp));
-        console.log(maxScoreArray);
+        console.log(resultsTemp);
         //Here I am taking the total number of items in the array and multiplying them by 100 to give us our percent score. 
         const maxScore = 100
 
@@ -765,10 +844,28 @@
         //this removes the last element of the array, which we are currently displaying in a different way, will come back to this and improve.
         trustIndexNew.pop();
 
+        console.log("HERE: " + trustIndexNew);
+
+        //I have retrofitted these graphs at this point in the dom so they can populate the gauges, before these values are removed from the array for displaying purposes. Should rethink this, change the headers of each gauge into the array items, headings (keys) & values.
+        //This will also act as a checksum for the guage output, althopugh it has been manually checked in the console
+
+        //Sentiment Gauge
+        var sentimentGauge = new Gauge(document.getElementById("gauge-sentiment"));
+        sentimentGauge.value(trustIndexNew[1] / 100);
+        //Author Gauge
+        var authorGauge = new Gauge(document.getElementById("gauge-author"));
+        authorGauge.value(trustIndexNew[5] / 100);
+        //Publisher Gauge
+        var publisherGauge = new Gauge(document.getElementById("gauge-publishers"));
+        publisherGauge.value(trustIndexNew[6] / 100);
+
+        //Removing the authors and publishers from the array 
         trustIndexNew.splice(4, 2);
 
+        //setting a custom variable for the bar chart results to include different entires
         let resultsForBarGraph = Object.values(trustIndexNew);
 
+        //Removing the first entry from the bar chart output as we do not need to display it here
         resultsForBarGraph.shift()
 
 
@@ -780,6 +877,7 @@
         var gauge = new Gauge(document.getElementById("gauge"));
         //I am just dividing by 100 to turn it into a score out of 0-1 (percent)
         gauge.value(trustIndexNew[0] / 100);
+
 
         //Here we are relabelling each value in our array with the correct labels. This is much better than creating the html elements. Again, I should now put the labels into an object or array and loop over
 
@@ -1096,7 +1194,7 @@
                     element.scrollIntoView();
                 },
                 200
-            );
+            )
         }
     </script>
 
@@ -1117,7 +1215,7 @@
                 "Article tone is Euphoric/Depressed",
                 "Suspicious Word Use"
             ]
-        }; */
+        }; 
 
         //https://bywire.news/articles/ethiopians-to-vote-in-what-government-bills-as-first-free-election
 
@@ -1135,7 +1233,7 @@
                 "author": "Flagg Eagleton-Patriot",
                 "article content": "An independent investigation by credible sources that may or may not be tied to the federal task force to investigate the Clintons has found that the New York City coroner who signed Jeffrey Epstein’s death cerificate was on the Clinton Foundation’s Board of Trustees until 2015. This report, which is an alleged excerpt from the Foundation’s public filings, has not been doctored at all. It shows clearly that Eric Braverman, the same man who declared Epstein’s death a suicide, made nearly $500K in 2015 for a cushy 45-hour per week job. At first, our investigators were skeptical, because the Coroner’s name isn’t technically \"Eric Braverman\" at all. It’s Dr. Arturo Tubbolski under the assumed name of Greg. Our investigator in the field, Skip Tetheluda, explains\" Greg was first hired as Art, but then his roommate transitioned from Leon to Linda, which made him a little uncomfortable. He moved in with Chelsea Clinton’s best friend from Dartmouth and before long he had taken over the position of Eric Braverman, the Foundation’s chief Operating Officer. We believe the real Braverman is buried wherever they put Vince Foster and Dimitri Noonan. Anyway, the fact that both men are listed makes this a slam dunk, yet the New York Attorney General, Sandiford Batt, won’t press charges. It’s a clear-cut caes of the Deep State covering their crimes.” Well if that doesn’t make perfect sense then nothing does. At this point, this Greg character needs to be found and locked up. According to the City of New York, he never worked there at all. Because Epstein has no family and left no will, there’s nobody to contest it. At least it’s finally over. We’ll never know how many of Clinton’s 26 trips were actually true now."
             ]
-        };
+        }*/
     </script>
 
 
