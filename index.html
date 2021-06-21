@@ -330,38 +330,14 @@
                     </div>
 
 
-
-
-                    <!--    <div class="row mt-4">
-                        <div class="col-6 p-2 mt-2">
-                            <div class="alert alert-danger" role="alert">
-                                <h2>WARNING - THIS IS FAKE!</h2>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-4">
-                        <div class="col-6 p-2 mt-2">
-                            <div class="alert alert-success" role="alert">
-                                <h2>Success, this is true!</h2>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-4">
-                        <div class="col-6 p-2 mt-2">
-                            <div class="alert alert-warning" role="alert">
-                                <h2>WARNING - THIS LOOKS DODGY!</h2>
-                            </div>
-                        </div>
-                    </div>
--->
                     <div class="row hide mt-3">
                         <div class="col-md-6 p-2">
 
                             <h2 id="trustedOrNot"></h2>
-                            <p>INSERT WARNING FOR REASONS/EUPHORIA HERE PLUS RATIONALE PERFECT</p>
-                            <p>[ADD IF STATEMENTS] <svg class="bi me-2" width="16" height="16"><use xlink:href="#flag-fill"/></svg>Warning, found on fake database</p>
+                            <div id="messageResultsAnal">
+
+                            </div>
+                            <p><svg class="bi me-2" width="16" height="16"><use xlink:href="#flag-fill"/></svg>Warning, found on fake database</p>
                             <ul>
                                 <li>Article title</li>
                                 <li>Published Date</li>
@@ -779,6 +755,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3/dist/chart.min.js"></script>
 
 
+
+
     <script>
         //Using jQuery for a quick rough word count, however this needs to be improved as there is a spacing bug, need to only count each space once, might be worth dropping jquer and just using js
         $('#myText').on('keyup', function() {
@@ -803,6 +781,8 @@
         const trustedNews = '<div class="alert alert-success d-flex align-items-center" role="alert">' + '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>' + '<div>' + "<strong>" + genuine + "</strong>" + "</div>" + "</div>";
         const caustionNews = '<div class="alert alert-danger d-flex align-items-center" role="alert">' + '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>' + '<div>' + "<strong>" + fake + "</strong>" + "</div>" + "</div>";
 
+
+
         var requests = {}
         var current_id = ""
 
@@ -819,7 +799,7 @@
         const resultsTemp = {
             "id": "b'e504826c5359763bfcfa6c51d9908becdbdd09d578b9e63f46a543e0c9d0b97de091e16e2c00e0f266ab8b46a553fef62d0217568ab400fd31b4511853e9d0c5'",
             "param_version": 5,
-            "trust_score": 15,
+            "trust_score": 55,
             "sentiment_score": 45,
             "divergency_score": 71,
             "layout_score": 100,
@@ -827,19 +807,81 @@
             "platform_score": 100,
             "author_score": 100,
             "reasons": [
-                "Article tone is Euphoric/Depressed",
+                "The tone is euphoric/depressed",
                 "Suspicious Word Use"
             ]
         };
 
+        const genuineMessage1 = "Although this article has been analysed as likely genuine, there [is one warning/are a few warnings] which you should be aware of.";
+        const fakeMessage1 = "This article is highly unlikely to be genuine, and it could be entirely fake. Below are a set of parameters which highlight how we came to this consideration.";
+
+        const euphoria_label_message = "The article tone is overly emotional. Professional journalists will not typically use overly emotive language, unless the article is opinion based. This could be an indication of inauthenticity, however, caution as the article may be truthful, but the writer could be partisan, with their style of writing and chose of langue flagging this warning. ";
+        const punctuation_label_message = "This article may be overusing punctuation; therefore, it has been flagged as suspicious. Professional news organisations tend to have style guides which prohibit the incorrect use of punctuation. This may be a sign of low production quality, which could mean this article is fake. ";
+        const sentiment_label_message = "This article has been flagged as containing suspicious emotional characteristics. This may include the overuse of one specific emotion, which is rarely done in professional news publications, or it could mean that the author is deliberately trying to illicit an emotional response. If this is the case, then take caution, news reporting should never attempt to overly induce an emotional response from its readers. ";
+        const article_length_length_label_message = "The article length is shorter than you would expect from a news organisation. However, please note that this may be intentional, and is often used by professional news outlets when a news story is breaking. This is the most likely warning to give a false positive. However, shorter than expected article lengths are often found in fake news. ";
+        const complexity_word_length_label_message = "The complexity of the language used in this article seems to be overly simplistic. News stories that make bold claims would rarely provide little supporting information if those claims are genuine. Therefore, if this story is making big, bold claims and is more than a few hours old, and has been written with little substance, then this is almost certainly fake news. ";
+        const complexity_duplication_label_message = "There appears to be an overuse of repetition in this article. A classic technique of fake news is to bulk out an article, to make it look more genuine, by effectively repeating the same thing over and over, with the use of different words and sentences. ";
+        const complexity_complexity_label_message = "This article has been flagged as containing suspicious words. Professional news outlets are unlikely to include these words in their reporting, therefore this may be fake. However, please caution, as this may have been flagged out of context. Additional, quotes may have been mislabelled by the author, and therefore may have been incorrectly flagged in this warning. ";
+        const divergency_label_message = "The Bywire AI fake news detective is powered by two algorithms. The first is the Bywire algorithm, and the second has been kindly provided by Express.AI. Should both these algorithms be unable to find a consensus, this warning will be flagged. Please take additional caution with this article as our tools have been unable to reach a confident consensus, i.e., we just do not know if this is genuine or not, therefore we have flagged it for human intervention. ";
+
+        const mapping = {
+            "The tone is euphoric/depressed": euphoria_label_message,
+            "Suspicious Puntuation": punctuation_label_message,
+            "Suspicious Emotional Response": sentiment_label_message,
+            "Article is shorter than expected": article_length_length_label_message,
+            "Simlistic Word Use": complexity_word_length_label_message,
+            "Repetitive Word Use": complexity_duplication_label_message,
+            "Suspicious Word Use": complexity_complexity_label_message,
+            "Suspicious Incompatability between algorithms": divergency_label_message
+        };
 
 
+
+        let reasonMessages = [];
+
+        resultsTemp["reasons"].forEach(item => {
+            let newReason = mapping[item];
+            reasonMessages.push(("<p>" + newReason + "</p>"));
+        });
+
+        console.log(reasonMessages);
+
+        document.getElementById("messageResultsAnal").innerHTML = reasonMessages;
+
+
+        //array.lnegth - to work out the total length of the aray, and then pinrt out all contents
+
+        //const messageResults = trustIndexNew.filter(isBigEnough);
+
+        //document.getElementById("messageResultsAnal").innerHTML = resultsTemp.this.
+        //"sentiment_score");
+
+        /*let messageBuilder = "<p>"
+
+        if (resultsTemp["sentiment_score"] >= 50) {
+            //document.getElementById("messageResultsAnal").innerHTML = sentiment_label_message;
+            messageBuilder += sentiment_label_message + "</p>"
+        }
+        if (resultsTemp["divergency_score"] >= 50) {
+            //document.getElementById("messageResultsAnal").innerHTML += divergency_label_message;
+            messageBuilder += divergency_label_message + "</p>"
+        }
+        if (resultsTemp["divergency_score"] >= 50) {
+            //document.getElementById("messageResultsAnal").innerHTML += divergency_label_message;
+            messageBuilder += divergency_label_message + "</p>"
+        } */
+
+
+
+
+
+        //document.getElementById("messageResultsAnal").innerHTML = messageBuilder;
 
         // API data in still needs to be done, but this ensures the outputs are all working. 
 
         //Conversting my JS object into a Array to utilse those features (namely for the out of score)
         const maxScoreArray = (Object.keys(resultsTemp));
-        console.log(resultsTemp);
+
         //Here I am taking the total number of items in the array and multiplying them by 100 to give us our percent score. 
         const maxScore = 100
 
@@ -855,7 +897,12 @@
         //this removes the last element of the array, which we are currently displaying in a different way, will come back to this and improve.
         trustIndexNew.pop();
 
-        console.log("HERE: " + trustIndexNew);
+
+
+
+        //let messageResults = resultsTemp.filter(isBigEnough);
+
+        //document.getElementById("messageResults").innerHTML = isBigEnough(resultsTemp);
 
         //I have retrofitted these graphs at this point in the dom so they can populate the gauges, before these values are removed from the array for displaying purposes. Should rethink this, change the headers of each gauge into the array items, headings (keys) & values.
         //This will also act as a checksum for the guage output, althopugh it has been manually checked in the console
@@ -888,6 +935,9 @@
         var gauge = new Gauge(document.getElementById("gauge"));
         //I am just dividing by 100 to turn it into a score out of 0-1 (percent)
         gauge.value(trustIndexNew[0] / 100);
+
+
+
 
 
         //Here we are relabelling each value in our array with the correct labels. This is much better than creating the html elements. Again, I should now put the labels into an object or array and loop over
@@ -941,7 +991,6 @@
         let ctx = document.getElementById('trustIndexChart');
 
 
-        console.log("results: " + resultsForBarGraph);
 
         var myChart = new Chart(ctx, {
             type: 'bar',
@@ -1018,6 +1067,10 @@
             },
         };
 
+
+
+
+
         //This handles the inverse selection for flagging purpose, if the article is genunie, we should ask if it is fake, and the inverse
         let flag = "";
         const flagFake = "Fake";
@@ -1034,7 +1087,8 @@
                 flag = flagGenuine;
             }
             return resultsInternal
-        }
+        };
+
 
 
 
@@ -1089,7 +1143,7 @@
                     }
                 }
             }
-        }
+        };
 
 
 
