@@ -192,16 +192,16 @@
                                 <div class="col-md-6">
 
                                     <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Enter the Article Title</label>
-                                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Pope Francis Shocks World, Endorses Donald Trump for President
+                                        <label for="inputTitle" class="form-label">Enter the Article Title</label>
+                                        <input type="text" class="form-control" id="inputTitle" placeholder="Pope Francis Shocks World, Endorses Donald Trump for President
                                 ">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Website URL</label>
-                                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="https://tatersgonnatate.com/nyc-coroner-that-declared-epsteins-death-suicide-was-on-clinton-foundation-payroll-until-2015/
+                                        <label for="inputWebsite" class="form-label">Website URL</label>
+                                        <input type="text" class="form-control" id="inputWebsite" placeholder="https://tatersgonnatate.com/nyc-coroner-that-declared-epsteins-death-suicide-was-on-clinton-foundation-payroll-until-2015/
                                         ">
                                     </div>
                                 </div>
@@ -211,15 +211,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Enter the Article Author if known</label>
-                                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Joe Bloggs
+                                        <label for="inputAuthor" class="form-label">Enter the Article Author if known</label>
+                                        <input type="text" class="form-control" id="inputAuthor" placeholder="Joe Bloggs
                                         ">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Publisher</label>
-                                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="BBC, CNN, WTOE 5, Guardian, The Times etc
+                                        <label for="inputPublisher" class="form-label">Publisher</label>
+                                        <input type="text" class="form-control" id="inputPublisher" placeholder="BBC, CNN, WTOE 5, Guardian, The Times etc
                                         ">
                                     </div>
                                 </div>
@@ -232,8 +232,8 @@
                             <p>Enter the website text into the field below
                             </p>
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="myText" style="height: 300px"></textarea>
-                                <label for="myText">News Article</label>
+                                <textarea class="form-control" placeholder="Leave a comment here" id="inputNewsArticle" style="height: 300px"></textarea>
+                                <label for="inputNewsArticle">News Article</label>
                                 <span id="wordCount">0</span> Words
                             </div>
 
@@ -334,18 +334,14 @@
                         <div class="col-md-6 p-2">
 
                             <h2 id="trustedOrNot"></h2>
+                            <h4>Title: <span id="inputArticleTitleOutput"></span></h4>
                             <p id="openingAnalysisMessage"></p>
                             <div id="messageResultsAnal">
 
                             </div>
                             <p><svg class="bi me-2" width="16" height="16"><use xlink:href="#flag-fill"/></svg>Warning, found on fake database</p>
-                            <ul>
-                                <li>Article title</li>
-                                <li>Published Date</li>
-                                <li>Fake or Not Database</li>
-                                <li>Full Fact Status</li>
-                                <li>Snoopes Status</li>
-                            </ul>
+                            <p class="lead"><span id="inputArticleAuthorOutput"></span> | <span id="inputArticlePublisherOutput"></span> </p>
+
 
                         </div>
 
@@ -430,7 +426,6 @@
 
                     <div class="col p-2 mt-2">
                         <h3 class="mb-3">Author: <span id="trust_index">100</span></h3>
-
                         <div class="gauge gauge--liveupdate" id="gauge-author">
                             <div class="gauge__container">
                                 <div class="gauge__marker"></div>
@@ -445,6 +440,8 @@
                                 <span class="gauge__label--high">Trustworthy</span>
                             </div>
                         </div>
+                        <p class="lead" id="authorNameGraph"></p>
+
                     </div>
                     <div class="col p-2 mt-2">
                         <h3 class="mb-3">Publishers: <span id="trust_index">100</span></h3>
@@ -463,6 +460,7 @@
                                 <span class="gauge__label--high">Trustworthy</span>
                             </div>
                         </div>
+                        <p class="lead" id="publisherNameGraph"></p>
                     </div>
                 </div>
 
@@ -813,6 +811,8 @@
             ]
         };
 
+
+
         const genuineMessage1 = "Although this article has been analysed as likely genuine, there [is one warning/are a few warnings] which you should be aware of.";
         const fakeMessage1 = "This article is highly unlikely to be genuine, and it could be entirely fake. Below are a set of parameters which highlight how we came to this consideration.";
 
@@ -1109,10 +1109,44 @@
         let progressTemp = document.getElementById("myProgress");
 
 
+
+        //New Fake or Not search input Object constructor
+
+        console.log(inputTitle)
+
+
+
         // This is the progress bar js. It also fires the show hide functions and the scrolling function, which isn't quite right yet.
         var i = 0;
 
         function submit_text() {
+            const inputTitle = document.getElementById("inputTitle").value;
+            const inputWebsite = document.getElementById("inputWebsite").value;
+            const inputAuthor = document.getElementById("inputAuthor").value;
+            const inputPublisher = document.getElementById("inputPublisher").value;
+            const inputNewsArticle = document.getElementById("inputNewsArticle").value;
+
+            function Fakeornot(title, website, author, publisher, content) {
+                this.searchTitle = title;
+                this.searchWebsite = website;
+                this.searchAuthor = author;
+                this.searchPublisher = publisher;
+                this.searchContent = content;
+            }
+
+            const newSeach = new Fakeornot(inputTitle, inputWebsite, inputAuthor, inputPublisher, inputNewsArticle);
+
+            console.log(newSeach)
+
+            document.getElementById("inputArticleTitleOutput").innerHTML = newSeach.searchTitle;
+            document.getElementById("inputArticleAuthorOutput").innerHTML = newSeach.searchAuthor;
+            document.getElementById("inputArticlePublisherOutput").innerHTML = newSeach.searchPublisher;
+
+
+            document.getElementById("authorNameGraph").innerHTML = newSeach.searchAuthor;
+            document.getElementById("publisherNameGraph").innerHTML = newSeach.searchPublisher;
+
+
             showHideProgress();
             progressTemp.scrollIntoView();
             if (i == 0) {
@@ -1134,7 +1168,6 @@
                 }
             }
         };
-
 
 
 
