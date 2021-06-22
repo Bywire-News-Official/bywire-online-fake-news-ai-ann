@@ -1,0 +1,83 @@
+﻿<config>	
+  <database>
+    <url> localhost </url>
+    <port> 27017 </port>
+    <schema> bywire_trust </schema>
+  </database>
+
+  <api>
+    <expertai>
+      <use> False </use>
+      <username> jetze@bywire.news </username>
+      <password> Nel%mezz0! </password>
+    </expertai>
+  </api>
+
+  <model>
+    <path> Config/Model </path>
+    <version> 0.1 </version>
+    <type> heuristic </type>
+    <ann>
+      <layers> 12|8 </layers>
+      <epochs> 150 </epochs>
+      <batchsize> 10 </batchsize>
+      <expert-panel> 20 </expert-panel>
+    </ann>
+  </model>
+  
+  <storage>
+    <base-path> ./Data </base-path>
+    <ipfs-server>
+      <server-mode> stand-alone </server-mode>
+      <url> http://localhost:{port:s}/api/v0/ </url>
+      <port> 5001 </port>
+      <node> QmQXqUKRCynAommqJyLjp3H5gEeo8C3swKgqy9JfgxrgxF </node>
+      <peer-ref> QmbFMke1KXqnYyBBWxB74N4c5SBnJMVAiMNRcGu6x1AwQH </peer-ref>
+      <read-only> False </read-only>
+      <peers-file> peers.csv </peers-file>
+      <ipfs-path> /home/jetze/Wirebits/DEV/go-ipfs/linux </ipfs-path>
+      <ipfs-path-output> output_{0:s}.log </ipfs-path-output>
+      <ip-stable> True </ip-stable>
+      <ip-address> 172.31.18.213 </ip-address>
+      <ip-command> dig TXT +short o-o.myaddr.I.google.com @ns1.google.com </ip-command>
+    </ipfs-server>
+    <article-cache>
+      <length> 1000 </length>
+      <clean-frequency> 3600 </clean-frequency>
+    </article-cache>
+  </storage>
+
+	
+	
+  <logging>
+    <level> info </level>
+    <path> ./Data/Logs/Logs/{date}/{count} </path>
+    <format> %(asctime)s - %(levelname)s - %(message)s </format>
+    <logger> 
+      <level> error </level>
+      <destination> screen </destination>
+    </logger>
+    <logger> 
+      <level> error </level>
+      <destination> error.log </destination>
+    </logger>
+    <logger> 
+      <level> info </level>
+      <destination> info.log </destination>
+    </logger>
+    <logger> 
+      <level> info </level>
+      <destination> screen</destination>
+    </logger>
+    <logger> 
+      <level> warn </level>
+      <destination> warn.log </destination>
+    </logger>
+    <logger> 
+      <level> debug </level>
+      <destination> debug.log </destination>
+    </logger>
+  </logging>
+	
+	
+</config>
