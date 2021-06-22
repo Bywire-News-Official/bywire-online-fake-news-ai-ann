@@ -1,0 +1,1776 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="material-gauge.css">
+
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#7952b3">
+
+    <title>Bywire Online Fake News Detection Application</title>
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+</head>
+
+<body id="top">
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="bootstrap" viewBox="0 0 118 94">
+          <title>Bywire</title>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"></path>
+        </symbol>
+        <symbol id="home" viewBox="0 0 16 16">
+          <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+        </symbol>
+        <symbol id="speedometer2" viewBox="0 0 16 16">
+          <path d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z"/>
+          <path fill-rule="evenodd" d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z"/>
+        </symbol>
+        <symbol id="table" viewBox="0 0 16 16">
+          <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
+        </symbol>
+        <symbol id="people-circle" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+        </symbol>
+        <symbol id="grid" viewBox="0 0 16 16">
+          <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+        </symbol>
+        <symbol id="collection" viewBox="0 0 16 16">
+          <path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"/>
+        </symbol>
+        <symbol id="calendar3" viewBox="0 0 16 16">
+          <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+          <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+        </symbol>
+        <symbol id="chat-quote-fill" viewBox="0 0 16 16">
+          <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM7.194 6.766a1.688 1.688 0 0 0-.227-.272 1.467 1.467 0 0 0-.469-.324l-.008-.004A1.785 1.785 0 0 0 5.734 6C4.776 6 4 6.746 4 7.667c0 .92.776 1.666 1.734 1.666.343 0 .662-.095.931-.26-.137.389-.39.804-.81 1.22a.405.405 0 0 0 .011.59c.173.16.447.155.614-.01 1.334-1.329 1.37-2.758.941-3.706a2.461 2.461 0 0 0-.227-.4zM11 9.073c-.136.389-.39.804-.81 1.22a.405.405 0 0 0 .012.59c.172.16.446.155.613-.01 1.334-1.329 1.37-2.758.942-3.706a2.466 2.466 0 0 0-.228-.4 1.686 1.686 0 0 0-.227-.273 1.466 1.466 0 0 0-.469-.324l-.008-.004A1.785 1.785 0 0 0 10.07 6c-.957 0-1.734.746-1.734 1.667 0 .92.777 1.666 1.734 1.666.343 0 .662-.095.931-.26z"/>
+        </symbol>
+        <symbol id="cpu-fill" viewBox="0 0 16 16">
+          <path d="M6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+          <path d="M5.5.5a.5.5 0 0 0-1 0V2A2.5 2.5 0 0 0 2 4.5H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2A2.5 2.5 0 0 0 4.5 14v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14a2.5 2.5 0 0 0 2.5-2.5h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14A2.5 2.5 0 0 0 11.5 2V.5a.5.5 0 0 0-1 0V2h-1V.5a.5.5 0 0 0-1 0V2h-1V.5a.5.5 0 0 0-1 0V2h-1V.5zm1 4.5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3A1.5 1.5 0 0 1 6.5 5z"/>
+        </symbol>
+        <symbol id="gear-fill" viewBox="0 0 16 16">
+          <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+        </symbol>
+        <symbol id="speedometer" viewBox="0 0 16 16">
+          <path d="M8 2a.5.5 0 0 1 .5.5V4a.5.5 0 0 1-1 0V2.5A.5.5 0 0 1 8 2zM3.732 3.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 8a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 7.31A.91.91 0 1 0 8.85 8.569l3.434-4.297a.389.389 0 0 0-.029-.518z"/>
+          <path fill-rule="evenodd" d="M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.945 11.945 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0z"/>
+        </symbol>
+        <symbol id="toggles2" viewBox="0 0 16 16">
+          <path d="M9.465 10H12a2 2 0 1 1 0 4H9.465c.34-.588.535-1.271.535-2 0-.729-.195-1.412-.535-2z"/>
+          <path d="M6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm.535-10a3.975 3.975 0 0 1-.409-1H4a1 1 0 0 1 0-2h2.126c.091-.355.23-.69.41-1H4a2 2 0 1 0 0 4h2.535z"/>
+          <path d="M14 4a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"/>
+        </symbol>
+        <symbol id="tools" viewBox="0 0 16 16">
+          <path d="M1 0L0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.356 3.356a1 1 0 0 0 1.414 0l1.586-1.586a1 1 0 0 0 0-1.414l-3.356-3.356a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0zm9.646 10.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708zM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11z"/>
+        </symbol>
+        <symbol id="chevron-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+        </symbol>
+        <symbol id="geo-fill" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z"/>
+        </symbol>
+        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+          </symbol>
+          <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+          </symbol>
+          <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+          </symbol>
+          <symbol id="flag-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001"/>
+        </symbol>
+      </svg>
+
+    <main>
+      <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none noborder">
+          <span class="fs-4">Bywire News AI Tools</span>
+        </a>
+        <hr>
+            <ul class="nav nav-pills flex-column mb-auto" id="bwTabs" role="tablist">
+
+                <li class="nav-item mt-3">
+                    <a href="#" class="nav-link text-white active" id="welcome-tab" data-bs-toggle="pill" data-bs-target="#welcome" type="button" role="tab" aria-controls="welcome" aria-selected="true">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg> Fake News Detector
+                    </a>
+                </li>
+                <li class="nav-item mt-3">
+                    <a href="#" class="nav-link text-white" id="profile-tab" data-bs-toggle="pill" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg> Blockchain Truth Analysis
+                    </a>
+                </li>
+                <li class="nav-item mt-3">
+                    <a href="#" class="nav-link text-white" id="settings-tab" data-bs-toggle="pill" data-bs-target="#photos" type="button" role="tab" aria-controls="settings" aria-selected="false">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg> Fake Memes + Photos
+                    </a>
+                </li>
+                <li class="nav-item mt-3">
+                    <a href="#" class="nav-link text-white" id="messages-tab" data-bs-toggle="pill" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg> Real-time Fake News
+                    </a>
+                </li>
+                <li class="nav-item mt-3">
+                    <a href="#" class="nav-link text-white" id="settings-tab" data-bs-toggle="pill" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg> Live Fake News API
+                    </a>
+                </li>
+                <li class="nav-item mt-3">
+                    <a href="#" class="nav-link text-white" id="last-tab" data-bs-toggle="pill" data-bs-target="#last" type="button" role="tab" aria-controls="last" aria-selected="false">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg> How it works?
+                    </a>
+                </li>
+            </ul>
+            <hr />
+            <!--<div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <strong>Hello, Michael</strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#">New project...</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
+            </div>-->
+        </div>
+        <div class="b-example-divider"></div>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+          <div class="tab-pane active" id="welcome" role="tabpanel" aria-labelledby="welcome-tab">
+
+            <div class="container">
+              <div class="row mt-3">
+                <div class="col-12 p-2 submissionForm">
+			  
+                  <h1>Is this News Fake or Genuine?</h1>
+                  <hr />
+                  <div class="alert alert-info" role="alert">
+                    <h4 class="alert-heading">Hackathon only!</h4>
+                    <label for="simDataList" class="form-label">Simulate Results</label>
+                    <input class="form-control" list="datalistOptions" id="simDataList" placeholder="Examples of Fake and Real News">
+                    <datalist id="datalistOptions">
+		    </datalist>
+                  </div>
+		  
+
+                  <div class="row">
+                    <div class="col-md-6">
+		      
+                      <div class="mb-3">
+                        <label for="inputTitle" class="form-label">Enter the Article Title</label>
+                        <input type="text" class="form-control" id="inputTitle" placeholder="Pope Francis Shocks World, Endorses Donald Trump for President">
+                      </div>
+                    </div>
+		    
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="inputWebsite" class="form-label">Website URL</label>
+                        <input type="text" class="form-control" id="inputWebsite" placeholder="https://tatersgonnatate.com/nyc-coroner-that-declared-epsteins-death-suicide-was-on-clinton-foundation-payroll-until-2015/">
+                      </div>
+                    </div>
+		    
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="inputAuthor" class="form-label">Enter the Article Author if known</label>
+                        <input type="text" class="form-control" id="inputAuthor" placeholder="Joe Bloggs">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="inputPublisher" class="form-label">Publisher</label>
+                        <input type="text" class="form-control" id="inputPublisher" placeholder="BBC, CNN, WTOE 5, Guardian, The Times etc">
+                      </div>
+                    </div>
+                  </div>
+                  <p>Enter the website text into the field below</p>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="inputNewsArticle" style="height: 300px"></textarea>
+                    <label for="inputNewsArticle">News Article</label>
+                    <span id="wordCount">0</span> Words
+                  </div>
+
+                  <div class="form-check form-check-inline mt-2">
+                    <fieldset disabled>
+                      <input class="form-check-input disabled" type="checkbox" id="fakeornot" value="fakeornot" checked>
+                      <label class="form-check-label" for="fakeornot">Fake or Genuine?</label>
+                    </fieldset>
+                  </div>
+
+                  <div class="form-check form-check-inline mt-2">
+                    <fieldset disabled>
+                      <input class="form-check-input disabled" type="checkbox" id="inlineCheckbox1" value="option1" checked>
+                      <label class="form-check-label" for="inlineCheckbox1">Sentiment scores</label>
+                    </fieldset>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <fieldset disabled>
+                      <input class="form-check-input" type="checkbox" id="layoutAnalysis" value="option2" checked>
+                      <label class="form-check-label" for="layoutAnalysis">Layout analysis</label>
+                    </fieldset>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <fieldset disabled>
+                      <input class="form-check-input" type="checkbox" id="divergenceAnalysis" value="option2" checked>
+                      <label class="form-check-label" for="divergenceAnalysis">Divergence</label>
+                    </fieldset>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <fieldset disabled>
+                      <input class="form-check-input" type="checkbox" id="complexityAnalysis" value="option2" checked>
+                      <label class="form-check-label" for="complexityAnalysis">Complexity</label>
+                    </fieldset>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <fieldset disabled>
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" checked>
+                      <label class="form-check-label" for="inlineCheckbox3">Author score</label>
+                    </fieldset>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <fieldset disabled>
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4" checked>
+                      <label class="form-check-label" for="inlineCheckbox4">Publisher score</label>
+                    </fieldset>
+                  </div>
+		  
+                  <div class="form-check form-check-inline">
+                    <fieldset disabled>
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+                      <label class="form-check-label" for="inlineCheckbox5">Political bias</label>
+                    </fieldset>
+                  </div>
+		  
+                  <div class="form-check form-check-inline">
+                    <fieldset disabled>
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                      <label class="form-check-label" for="inlineCheckbox6">Originality</label>
+                    </fieldset>
+                  </div>
+		  
+                  <div class="form-check form-check-inline">
+                    <fieldset disabled>
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                      <label class="form-check-label" for="inlineCheckbox6">History</label>
+                    </fieldset>
+                  </div>
+
+
+                </div>
+              </div>
+              <div class="row submissionForm">
+                <div class="col p-2 mt-2">
+                  <a type="button" class="btn btn-primary btn-lg buttonResults" onclick="submit_text();">Begin Analysis</a>
+                </div>
+              </div>
+
+
+              <!--BEGIN RESULTS SECTION-->
+              <div class="row hide-progress">
+                <div class="col p-2 mt-2">
+                  <div id="myProgress">
+                    <div id="myBar"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row hide" id="results">
+                <div class="col p-2 mt-2">
+                  <h1>Results</h1>
+                  <hr />
+                </div>
+              </div>
+	      
+
+              <div class="row hide mt-3">
+                <div class="col-md-6 p-2">
+		  
+                  <h2 id="trustedOrNot"></h2>
+                  <h4><span id="inputArticleTitleOutput"></span></h4>
+                  <p id="openingAnalysisMessage"></p>
+                  <div id="messageResultsAnal">
+                  </div>
+                  <p id="warningFlagFakeDatabaseTrue"></p>
+                  <p class="lead"><span id="inputArticleAuthorOutput"></span> | <span id="inputArticlePublisherOutput"></span> </p>
+                </div>
+
+                <div class="col-md-6 p-2">
+                  <div class="gauge gauge--liveupdate" id="gauge">
+                    <div class="gauge__container">
+                      <div class="gauge__marker"></div>
+                      <div class="gauge__background"></div>
+                      <div class="gauge__center"></div>
+                      <div class="gauge__data"></div>
+                      <div class="gauge__needle"></div>
+                    </div>
+                    <div class="gauge__labels mdl-typography__headline">
+                      <span class="gauge__label--low">FAKE</span>
+                      <span class="gauge__label--spacer"></span>
+                      <span class="gauge__label--high">Genuine</span>
+                    </div>
+                  </div>
+                  <script src="material-gauge.js"></script>
+                  <h2 class="text-center">Trust Score: <span id="trust_index"></span> </h2>
+                  <p class="text-center flags" onclick="submit_flag();">Flag as <span id="flagAsWhat"></span></p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row hide">
+              <div class="col p-2 ">
+              </div>
+            </div>
+            <div class="row mt-4 hide ">
+
+              <div class="col-md-2 p-2 mt-2">
+
+                <ul class="mt-5" id="trust_index_results">
+
+                </ul>
+              </div>
+
+              <div class="col-md-1 p-2 mt-2"></div>
+	      
+              <div class="col-md-9 p-2 mt-2" id="trustIndexContainer">
+
+
+
+              </div>
+            </div>
+
+            <div class="row mt-5 hide text-center">
+              <div class="col p-2 mt-2">
+                <h3 class="mb-3">Sentiment: <span id="gauge-sentiment-label">45</span></h3>
+		
+                <div class="gauge gauge--liveupdate" id="gauge-sentiment">
+                  <div class="gauge__container">
+                    <div class="gauge__marker"></div>
+                    <div class="gauge__background"></div>
+                    <div class="gauge__center"></div>
+                    <div class="gauge__data"></div>
+                    <div class="gauge__needle"></div>
+                  </div>
+                  <div class="gauge__labels mdl-typography__headline">
+                    <span class="gauge__label--low">Negative</span>
+                    <span class="gauge__label--spacer"></span>
+                    <span class="gauge__label--high">Positive</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col p-2 mt-2">
+                <h3 class="mb-3">Author: <span id="gauge-author-label">100</span></h3>
+                <div class="gauge gauge--liveupdate" id="gauge-author">
+                  <div class="gauge__container">
+                    <div class="gauge__marker"></div>
+                    <div class="gauge__background"></div>
+                    <div class="gauge__center"></div>
+                    <div class="gauge__data"></div>
+                    <div class="gauge__needle"></div>
+                  </div>
+                  <div class="gauge__labels mdl-typography__headline">
+                    <span class="gauge__label--low">Caution</span>
+                    <span class="gauge__label--spacer"></span>
+                    <span class="gauge__label--high">Trustworthy</span>
+                  </div>
+                </div>
+                <p class="lead" id="authorNameGraph"></p>
+		
+              </div>
+              <div class="col p-2 mt-2">
+                <h3 class="mb-3">Publishers: <span id="gauge-publisher-label">100</span></h3>
+		
+                <div class="gauge gauge--liveupdate" id="gauge-publishers">
+                  <div class="gauge__container">
+                    <div class="gauge__marker"></div>
+                    <div class="gauge__background"></div>
+                    <div class="gauge__center"></div>
+                    <div class="gauge__data"></div>
+                    <div class="gauge__needle"></div>
+                  </div>
+                  <div class="gauge__labels mdl-typography__headline">
+                    <span class="gauge__label--low">Caution</span>
+                    <span class="gauge__label--spacer"></span>
+                    <span class="gauge__label--high">Trustworthy</span>
+                  </div>
+                </div>
+                <p class="lead" id="publisherNameGraph"></p>
+              </div>
+            </div>
+
+            <div class="row mt-4 hide">
+              <div class="col-md-12 p-2 mt-2">
+              </div>
+            </div>
+
+
+            <div class="row mt-5 hide">
+              <div class="col-md-7 p-2 mt-2">
+                <h1 class="py-2">Bywire Artificial Neural Network (BANN)</h1>
+                <h3>Please rank your answers out of 10, with 10 being very good and 1 being very poor</h3>
+                <hr />
+		
+		
+                <h2 class="my-5">Was this analysis accurate?</h2>
+			
+                <label for="customRange3" class="form-label">Was this analysis accurate?</label>
+                <input type="range" value="1" name="rangeInput" class="form-range" min="1" max="10" step="1" id="customRange3" onchange="updateTextInput(this.value);">
+                <input type="text" class="form-control" id="textInput" value="1" readonly>
+
+                <script>
+                  function updateTextInput(val) {
+                      document.getElementById('textInput').value = val;
+                  }
+                </script>
+
+
+                <h2 class="my-5">How accurate was the trust analysis score in your opinion?</h2>
+		
+                <label for="customRange1" class="form-label">HHow accurate was the trust analysis score in your opinion?</label>
+                <input type="range" value="1" name="rangeInput1" class="form-range" min="1" max="10" step="1" id="customRange1" onchange="updateTextInput1(this.value);">
+
+
+                <input type="text" class="form-control" id="textInput1" value="1" readonly>
+
+                <script>
+                  function updateTextInput1(val) {
+                      document.getElementById('textInput1').value = val;
+                  }
+                </script>
+
+
+
+                <h2 class="my-5">How accurate was the sentiment analysis score in your opinion?</h2>
+		
+                <label for="customRange4" class="form-label">How accurate was the sentiment analysis score in your opinion?</label>
+                <input type="range" value="1" name="rangeInput4" class="form-range" min="1" max="10" step="1" id="customRange4" onchange="updateTextInput4(this.value);">
+
+
+                <input type="text" class="form-control" id="textInput4" value="1" readonly>
+
+                <script>
+                  function updateTextInput4(val) {
+                      document.getElementById('textInput4').value = val;
+                  }
+                </script>
+
+
+
+                <h2 class="my-5">How accurate was the author analysis score in your opinion?</h2>
+
+                <label for="customRange5" class="form-label">How accurate was the author analysis score in your opinion?</label>
+                <input type="range" value="1" name="rangeInput5" class="form-range" min="1" max="10" step="1" id="customRange5" onchange="updateTextInput5(this.value);">
+
+
+                <input type="text" class="form-control" id="textInput5" value="1" readonly>
+
+                <script>
+                  function updateTextInput5(val) {
+                      document.getElementById('textInput5').value = val;
+                  }
+                </script>
+
+
+                <h2 class="my-5">How accurate was the publisher analysis score in your opinion?</h2>
+		
+                <label for="customRange6" class="form-label">How accurate was the publisher analysis score in your opinion?</label>
+                <input type="range" value="1" name="rangeInput6" class="form-range" min="1" max="10" step="1" id="customRange6" onchange="updateTextInput6(this.value);">
+
+
+                <input type="text" class="form-control" id="textInput6" value="1" readonly>
+
+                <script>
+                  function updateTextInput6(val) {
+                      document.getElementById('textInput6').value = val;
+                  }
+                </script>
+
+
+              </div>
+            </div>
+
+            <div class="row mt-4 hide">
+              <div class="col-md-12 p-2 mt-2">
+                <button class="btn btn-primary" type="submit" onclick="submit_flag();">Share Feedback with Bywire Neural Network</button>
+              </div>
+            </div>
+
+
+
+
+                <!--  <div class="row mt-4">
+                        <div class="col-3 p-2 mt-2">
+                            <h2>Satire or parody</h2>
+                            <p>Satire or parody is where the information has the potential to fool and may be misinterpreted as fact. Satire does not necessarily cause harm as it takes stories from news sources and uses ridicule and sarcasm. Parodies focus
+                                on its content and are explicitly produced for entertainment purposes.</p>
+                            <hr />
+                        </div>
+                        <div class="col-3 p-2 mt-2">
+                            <h2>False connection</h2>
+                            <p>A false connection is obvious when headlines, visuals or captions do not support the content. The kind of news that is built on poor journalism with unrelated attributes to attract attention and used for profit. For example,
+                                reading a headline that states the death of a celebrity but upon clicking, the content of the entire article does not mention the celebrity</p>
+                            <hr />
+                        </div>
+                        <div class="col-3 p-2 mt-2">
+                            <h2>Misleading content</h2>
+                            <hr />
+                            <p>Misleading content is the type of fake news that uses information to frame an issue or an individual. A popular form of news used by politicians to bring down their opponents by making false claims with possibly some truth.</p>
+                        </div>
+                        <div class="col-3 p-2 mt-2">
+                            <h2>False context</h2>
+                            <hr />
+                            <p>False context includes false contextual information that is shared around genuine content.</p>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-3 p-2 mt-2">
+                            <h2>Impostor content</h2>
+                            <hr />
+                            <p>Derives from a false or made-up source which impersonates a real news source.</p>
+                        </div>
+                        <div class="col-3 p-2 mt-2">
+                            <h2>Manipulated content</h2>
+                            <hr />
+                            <p>Presents genuine information or imagery but deceives to tell a different story.</p>
+                        </div>
+                        <div class="col-3 p-2 mt-2">
+                            <h2>Fabricated content</h2>
+                            <hr />
+                            <p>New and fully fabricated content that is 100% false with the intention to deceive and cause harm.</p>
+                        </div>
+
+                    </div>
+-->
+
+
+
+
+
+
+
+          </div>
+          <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="container-fluid">
+                    <div class="row mt-3">
+                        <div class="col-12 p-2">
+
+                            <h1>Is this News Fake or Genuine?</h1>
+                            <hr />
+                            <div class="alert alert-info" role="alert">
+                                <h4 class="alert-heading">Hackathon only!</h4>
+                                <label for="simDataList1" class="form-label">Simulate Results</label>
+                                <input class="form-control" list="datalistOptions" id="simDataListIPFS" placeholder="Examples of Fake and Real News">
+                                <datalist id="datalistOptionsIPFS">
+                                </datalist>
+                            </div>
+
+                            <p>Enter the IPFS blockchain address into the field below:
+                            </p>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">https://ipfs.io/ipfs/</span>
+                                <input type="text" class="form-control form-control-lg" id="ipfs-input" placeholder="Qme7ss3ARVgxv6rXqVPiikMJ8u2NLgmgszg13pYrDKEoiu" aria-label="News Article URL" aria-describedby="basic-addon1">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="submit_ipfs();">Download from Blockchain</button>
+
+                            </div>
+                            <p>Enter the website text into the field below
+                            </p>
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Leave a comment here" id="inputNewsArticleIPFS" style="height: 300px" readonly></textarea>
+                                <label for="inputNewsArticleIPFS">News Article</label>
+                                <span id="wordCount">0</span> Words
+                            </div>
+
+                            <div class="form-check form-check-inline mt-2">
+                                <fieldset disabled>
+                                    <input class="form-check-input disabled" type="checkbox" id="fakeornot" value="fakeornot" checked>
+                                    <label class="form-check-label" for="fakeornot">Fake or Genuine?</label>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-check form-check-inline mt-2">
+                                <fieldset disabled>
+                                    <input class="form-check-input disabled" type="checkbox" id="inlineCheckbox1" value="option1" checked>
+                                    <label class="form-check-label" for="inlineCheckbox1">Sentiment scores</label>
+                                </fieldset>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="layoutAnalysis" value="option2" checked>
+                                    <label class="form-check-label" for="layoutAnalysis">Layout analysis</label>
+                                </fieldset>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="divergenceAnalysis" value="option2" checked>
+                                    <label class="form-check-label" for="divergenceAnalysis">Divergence</label>
+                                </fieldset>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="complexityAnalysis" value="option2" checked>
+                                    <label class="form-check-label" for="complexityAnalysis">Complexity</label>
+                                </fieldset>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" checked>
+                                    <label class="form-check-label" for="inlineCheckbox3">Author score</label>
+                                </fieldset>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4" checked>
+                                    <label class="form-check-label" for="inlineCheckbox4">Publisher score</label>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+                                    <label class="form-check-label" for="inlineCheckbox5">Political bias</label>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                                    <label class="form-check-label" for="inlineCheckbox6">Originality</label>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <fieldset disabled>
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                                    <label class="form-check-label" for="inlineCheckbox6">History</label>
+                                </fieldset>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col p-2 mt-2">
+                                    <a type="button" class="btn btn-primary btn-lg buttonResults" onclick="submit_text();">Begin Analysis</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+		    
+                    <!--BEGIN RESULTS SECTION-->
+                    <div class="row hide-progress">
+                        <div class="col p-2 mt-2">
+                            <div id="myProgressIPFS">
+                                <div id="myBarIPFS"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row hide" id="resultsIPFS">
+                        <div class="col p-2 mt-2">
+                            <h1>Results</h1>
+                            <hr />
+                        </div>
+                    </div>
+
+
+                    <div class="row hide mt-3">
+                        <div class="col-md-6 p-2">
+
+                            <h2 id="trustedOrNotIPFS"></h2>
+                            <h4><span id="inputArticleTitleOutputIPFS"></span></h4>
+                            <p id="openingAnalysisMessageIPFS"></p>
+                            <div id="messageResultsAnalIPFS">
+
+                            </div>
+                            <p id="warningFlagFakeDatabaseTrueIPFS"></p>
+                            <p class="lead"><span id="inputArticleAuthorOutputIPFS"></span> | <span id="inputArticlePublisherOutputIPFS"></span> </p>
+
+
+                        </div>
+
+
+
+                        <div class="col-md-6 p-2">
+                            <div class="gauge gauge--liveupdate" id="gaugeIPFS">
+                                <div class="gauge__container">
+                                    <div class="gauge__marker"></div>
+                                    <div class="gauge__background"></div>
+                                    <div class="gauge__center"></div>
+                                    <div class="gauge__data"></div>
+                                    <div class="gauge__needle"></div>
+                                </div>
+                                <div class="gauge__labels mdl-typography__headline">
+                                    <span class="gauge__label--low">FAKE</span>
+                                    <span class="gauge__label--spacer"></span>
+                                    <span class="gauge__label--high">Genuine</span>
+                                </div>
+                            </div>
+                            <script src="material-gauge.js"></script>
+
+                            <h2 class="text-center">Trust Score: <span id="trust_indexIPFS"></span> </h2>
+                            <p class="text-center flags" onclick="submit_flag();">Flag as <span id="flagAsWhatIPFS"></span></p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="row hide">
+                    <div class="col p-2 ">
+
+                    </div>
+                </div>
+                <div class="row mt-4 hide ">
+
+                    <div class="col-md-2 p-2 mt-2">
+
+                        <ul class="mt-5" id="trust_index_resultsIPFS">
+
+                        </ul>
+                    </div>
+
+                    <div class="col-md-1 p-2 mt-2"></div>
+
+                    <div class="col-md-9 p-2 mt-2" id="trustIndexContainerIPFS">
+
+
+
+                    </div>
+                </div>
+
+                <div class="row mt-5 hide text-center">
+
+
+
+                    <div class="col p-2 mt-2">
+                        <h3 class="mb-3">Sentiment: <span id="gauge-sentiment-labelIPFS">45</span></h3>
+
+                        <div class="gauge gauge--liveupdate" id="gauge-sentimentIPFS">
+                            <div class="gauge__container">
+                                <div class="gauge__marker"></div>
+                                <div class="gauge__background"></div>
+                                <div class="gauge__center"></div>
+                                <div class="gauge__data"></div>
+                                <div class="gauge__needle"></div>
+                            </div>
+                            <div class="gauge__labels mdl-typography__headline">
+                                <span class="gauge__label--low">Negative</span>
+                                <span class="gauge__label--spacer"></span>
+                                <span class="gauge__label--high">Positive</span>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="col p-2 mt-2">
+                        <h3 class="mb-3">Author: <span id="gauge-author-labelIPFS">100</span></h3>
+                        <div class="gauge gauge--liveupdate" id="gauge-authorIPFS">
+                            <div class="gauge__container">
+                                <div class="gauge__marker"></div>
+                                <div class="gauge__background"></div>
+                                <div class="gauge__center"></div>
+                                <div class="gauge__data"></div>
+                                <div class="gauge__needle"></div>
+                            </div>
+                            <div class="gauge__labels mdl-typography__headline">
+                                <span class="gauge__label--low">Caution</span>
+                                <span class="gauge__label--spacer"></span>
+                                <span class="gauge__label--high">Trustworthy</span>
+                            </div>
+                        </div>
+                        <p class="lead" id="authorNameGraphIPFS"></p>
+
+                    </div>
+                    <div class="col p-2 mt-2">
+                        <h3 class="mb-3">Publishers: <span id="gauge-publisher-labelIPFS">100</span></h3>
+
+                        <div class="gauge gauge--liveupdate" id="gauge-publishersIPFS">
+                            <div class="gauge__container">
+                                <div class="gauge__marker"></div>
+                                <div class="gauge__background"></div>
+                                <div class="gauge__center"></div>
+                                <div class="gauge__data"></div>
+                                <div class="gauge__needle"></div>
+                            </div>
+                            <div class="gauge__labels mdl-typography__headline">
+                                <span class="gauge__label--low">Caution</span>
+                                <span class="gauge__label--spacer"></span>
+                                <span class="gauge__label--high">Trustworthy</span>
+                            </div>
+                        </div>
+                        <p class="lead" id="publisherNameGraphIPFS"></p>
+                    </div>
+                </div>
+
+                <div class="row mt-4 hide">
+                    <div class="col-md-12 p-2 mt-2">
+
+
+                    </div>
+                </div>
+
+            </div>
+	    <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+	      <div class="container">
+		<div class="row mt-3">
+                  <div class="col-12 p-4">
+                    <h1>Have you discovered fake news or disinformation? </h1>
+                    <hr />
+                    <p class="lead">You can help stop fake news spreading before it even thinks to get its socks on! </p>
+                    <p class="lead">The Bywire News Network publishes certificates for all content that runs on our network, and this certificate objectively informs the Reader if the news is genuine or fake.</p>
+                    <p class="lead">In addition, the quicker fake news is flaged via our
+                      <a href="/">Fake News Detector</a>, the quicker it is added to our RED LIST. This will help inform others that this information is indeed false. Bywire will also soon automatically publish this analysis to its website and
+                      blockchains, which will show up on Google in place of, or ranked in a more prominent search position, than the original fake/false story.</p>
+                    <h2 class="my-5">LIVE interative fake news and disinformation map - COMING SOON</h2>
+                    <img src="images/2014-05-06_09_44_53.gif" class="img-fluid"><br />
+                    <small>Sample animated gif taken from https://www.vox.com/a/internet-maps and is used for illustrative purposes only.</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="photos" role="tabpanel" aria-labelledby="photos-tab">
+              <div class="container-fluid">
+                <div class="row mt-3">
+                  <div class="col-12 p-4">
+		    <h1 clas>Upload a meme (any photo with writing over it), to see if it is Fake or Not</h1>
+                    <hr />
+                    <h2 class="my-5">Upload your photo here:</h2>
+                    <div class="input-group mb-3" disabled>
+                      <input type="file" class="form-control" id="inputGroupFile02" disabled>
+                      <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                    </div>
+                    <h3 class="my-5">Sample Results</h3>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <img src="images/fake-hiliary-meme.png" class="d-block mx-auto img-fluid">
+                      </div>
+                      <div class="col-md-5">
+                        <p class="text-center">Did we read this Okay? <a href="#">Yes</a> | <a href="#">No</a></p>
+                        <textarea class="form-control" placeholder="Leave a comment here" id="inputNewsArticle5" style="height: 200px" readonly>Luigi Amaretto shared Veska Jankova's post. 12 September at 18:18 . Veska Jankova shared a link to the group: Boycott Liberal Media. 12 September : 15:32 . Hiliary Clinton Attacks Women Who Didn't Vote for Her. In her new book "What happened," Hiliary Clinton attacks women who regretted not voting for  USAJUSTNOW.COM</textarea>
+                        <div class="mt-2 alert alert-danger d-flex align-items-center" role="alert"><svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                          <strong><h4 class="alert-heading">WARNING FAKE NEWS!</h4><p>Warning! This article has been discovered on the Bywire fake news database! </p></strong>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+	    <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+              <div class="container-fluid">
+                <div class="row mt-3">
+                  <div class="col-12 p-4">
+                    <h1>Show your readers that your news is genuine</h1>
+                    <hr />
+                    <p class="lead">Bywire News is creating the new digital trust certification standard for news and content. Make use of our trust API and decentralise your content across two blockchains and show a certificate of trust to your readers.
+                    </p>
+                    <p class="lead">Using Expert.AI and Bywire custom algorithms, your readers can rest assured that the content they consume has been objectively reviewed and declared genuine by a transparent and accessible standard bearer. </p>
+                    <p class="lead">Should our AI tools display a caution or even fake warning, then you will have all the tools necessary to inform you on how you can improve your scores and authenticity to ensure that you achieve the very highest standard of
+                      truth for your readers.
+                    </p>
+                    <p class="lead">Example of the Bywire News trust certificates in action below. You can also see this technology LIVE at <a href="https://buwire.news" target="_blank">Bywire.news</a></p>
+                    <img src="images/cert-example.png">
+                  </div>
+                </div>
+              </div>
+	    </div>
+            <div class="tab-pane" id="last" role="tabpanel" aria-labelledby="settings-tab">
+                <div class="container">
+                    <div class="row mt-3">
+                        <div class="col-12 p-4">
+                            <h1>How it works</h1>
+                            <hr />
+
+                            <h1>Wirebit-Fake-News</h1>
+                            <p>Wirebit-Fake-News is the inception of a large project to automatically fake news in articles on the internet. The project was created on the 10th of June 2021 as part of the DevPost-ExpertAI hackathon. It is part of the&nbsp;
+                                <a href="https://bywire.news/" rel="nofollow">bywire.news</a>&nbsp;ecosystem to allow readers to gain trust in the news published, but there is wide interest in the project. In particular from education as it will allow
+                                us to teach pupils to be better aware of the mechanism used to spread fake news, publishing as it will create greater trust in established newspapers and social media. The project uses neuro-linguistic-programming (nlp),
+                                in particular expertai to turn an article into a feature vector. This feature vector is tranformed and uniformly scaled using heuristics, where a focus is placed on statistical anomalies (e.g. an article provokes more fear
+                                than usual), this will allows is to combine the features into an artificial neural network (ann) and a common sense model. Both the neural network and common sense model enhance eachother. For the neural network to be trained
+                                properly we will need manually flagged data, which is something we lack at the moment but the solution we build has a process in place so users can flag when they disagree with results of the algorithm. In this way we can
+                                build up training data over time and improve the model. Since bywire.news stores all articles on ipfs and timestamps them on the blockchain in order to allow independent verification of the veracity, we integrated the server
+                                and webfrontend to allow retreiving directly the article associated with an ipfs document. One can go to the wirebittoken eos account (<a href="https://www.bloks.io/account/wirebittoken" rel="nofollow">https://www.bloks.io/account/wirebittoken</a>)
+                                and copy the article that is part of wirebittoken-publish into the web page and obtain a trust score. One will notice that the main obstacle in the project was until now the severe lack of time, lack of staff and our corona.
+                            </p>
+                            <h2>
+                                <a id="user-content-technology" class="anchor" href="https://github.com/Bywire-News-Official/bywire-online-fake-news-ai-ann#technology" aria-hidden="true"></a>Technology</h2>
+                            <p>The core of the algorithms were written in python. We used python-flask to create a rest-api to interface with the algorithm and integrate it with the bywire.news platform. Machine learning was performed in Keras together with
+                                TensorFlow. For nlp we used expertai, nltk and nrclex. Access to expertai was done using the standard python bindings. As a database we employed mongodb. Trained anns were flushed to disk using json and the hd5 formats.
+                                For the webfrontend we used html5, javascript and php. For integration with the bywire.news platform we used angular, javascript and php. Integration with ipfs was done using an in house developed ipfs adapter together
+                                with the go-ipfs server. Finally the algorithms were developed using ubuntu 20.04. In theory they are programmed os independent, but this was not tested. Since it was not critical for the prototype user management was excluded.
+                                It is however very easy to add user management with jwt authentication in flask. The whitepaper is typeset using Latex.</p>
+                            <h2>
+                                <a id="user-content-expertai" class="anchor" href="https://github.com/Bywire-News-Official/bywire-online-fake-news-ai-ann#expertai" aria-hidden="true"></a>ExpertAI</h2>
+                            <p>ExpertAI is a nlp library that improves significantly over standard python libraries like nltk. Due to the need to parse the 150k articles currently published by bywire.news with an average length of around 1930 characters,
+                                to develop the concepts properly we introduced a switch to allow processing of the bulk of the articles without expertai until the algorithm is developed into a more mature stage. However ExpertAI already forms an essential
+                                part of the algorithms used. At the moment we are using the sentiment as calculated by ExpertAI, in particular to construct an euphoria indicator that points to extremely positive or negative sentiment and to detect when
+                                different nlp libraries give widely different results. We suspect the latter anomaly is a strong indication there is something suspect with the sentiment of the article. Furthermore ExpertAI is used to detect the lexical
+                                complexity of an article. The use of ExpertAI is only limited by the severe lack of time, but the possible uses are limitless as any statistical anomalies that one can detect is worth investigating and using. Apart from
+                                the measures already used we expect especially benefit in the short term future from the person/entity/concept densities (i.e. nr persons, nr relevant persons divided by article length).</p>
+                            <h2>
+                                <a id="user-content-algorithm" class="anchor" href="https://github.com/Bywire-News-Official/bywire-online-fake-news-ai-ann#algorithm" aria-hidden="true"></a>Algorithm</h2>
+                            <p>To describe the algorithm in the briefest of terms: we use a relatively standard setup machine learning. First we turn the text of an article, together with it's context (where was it published, who was the author) into a feature
+                                vector. This is scaled to a uniform range as it benefits gradient descent methods used in the learning algorithms for anns to have eigen values of similar magnitude. Then it is fed into a neural network. At the same time
+                                we tried to construct a heuristic model as this allows both to displays results for a wider range of articles while we are gathering data from users on which articles are falsified and it allows us a better understanding
+                                of how the ann and fake news detections works when properly trained by investigating the cases where both models give significantly different predictions. The Keras and Tensorflow already automatizes a lot of complexity
+                                with learning, overfitting and parameter instability away. So in short for the heuristic model we have the following flow: Text -&gt; NLP Indicators -&gt; Features -&gt; Scaled Features -&gt; Scores -&gt; Trust. Plan to
+                                model using a convoluted neural network (cnn) so we can determine intermediate scores using the machine learning algorithm as understanding why something is fake news is probably more important than knowing if something
+                                is fake news. The most interesting features we are looking at, based on domain knowledge. Sentiment, both extremely positive and negative as fake news needs to trigger an emotional reaction to be spread further and convince
+                                people. We have enhanced this with nrc sentiment to identify the top angry/fearful articles, since theory dictates that anger, fear and joy are emotions that spread better online while sadness and trust are emotions that
+                                hardly spread online. In short we are looking for articles that were engineered to spread maximally online. Further we look at lexical complexity: we expect that fake news is easier to read as it does not make sense to
+                                make an article that is hard to be read by the target audience and it would trigger thinking using the critical thinking system as defined by Daniel Kahnemann. Additionally we look for anomalies in the layout of the article:
+                                is it shorter than expected or uses shorter sentences to be more comprehensible. For more details on how the algorithm was implemented and which features are actively developing a whitepaper (included in this github repository)
+                                that describes the finer details of the theory behind fake news detections.</p>
+                            <h3>
+                                <a id="user-content-features" class="anchor" href="https://github.com/Bywire-News-Official/bywire-online-fake-news-ai-ann#features" aria-hidden="true"></a>Features</h3>
+                            <p>At the moment we use nlp to turn the text into the following features. They are described in more detail in the&nbsp;<a href="https://github.com/Bywire-News-Official/bywire-online-fake-news-ai-ann/blob/main/whitepaper/whitepaper_trust.pdf">draft whitepaper</a>&nbsp;and
+                                it's references. The whitepaper is included in this repository as it explains some fundamental concepts necessary for understanding the theory why the prototype works but it definitely needs more word before publishing
+                                and is under active development. At the moment we have the following features. It must be remembered that this is a rough draft, where shortcuts where taken to get a working prototype. Any statements made are hypotheses
+                                and we are not sure if they are true, but they form a suspicion why a feature may be worth investigation. Please remember that many features can be refined upon (e.g. mapping sinonyms), but due to a lack of time.</p>
+                            <ul>
+                                <li>Sentiment
+                                    <ul>
+                                        <li>sentiment1. This is the anger minus sadness score from the nrc sentiment as calculated by nrclex, normalized by the spread (10% - 90% confidence interval). The idea that the aim of fake news is to spread. On the
+                                            internet anger and joy spread while sadness inhibits the spread (<a href="https://www.trendfollowing.com/podcast/" rel="nofollow">as described in one of the first interviews from trendfollowing</a>. Additionally
+                                            anger has the benefit that it induces us to action&nbsp;<a href="https://www.smithsonianmag.com/science-nature/what-emotion-goes-viral-fastest-180950182/" rel="nofollow">a better explanation can be found here</a></li>
+                                        <li>sentiment2. This is a more elaborate version of sentiment1 by using the anger + fear - sadness - trust scores.</li>
+                                        <li>euphoria. This is maximum of positive euphoria and negative euphoria (depression). These are the positive and negative sentiment scores as calculated by expertai normalized to 1 for the top 10% (90% confidence interval)
+                                            and a linear increase from the top 50% (median) to the top 10%.</li>
+                                    </ul>
+                                </li>
+                                <li>Complexity
+                                    <ul>
+                                        <li>word_length. This is the ratio of length of the clean text (removing punctuation, html and stop words) to the number of words. It was calculated using the nltk library. We suspect that having longer words might
+                                            make a text harder to read and therefor harder to spread.</li>
+                                        <li>complexity. This is the ratio between the clean text and the length of stemmed words. It was calculated using the nltk library. When stemmed words are signficantly shorter the text is likely more complex to read
+                                            and therefore harder to spread.</li>
+                                        <li>duplication. This is the ratio between the number of tokens and the number of stemmed tokens. Indicating that certain terms were repeated often enhancing the chance people remember the message. It was calculated
+                                            using the nltk library.</li>
+                                    </ul>
+                                </li>
+                                <li>Layout
+                                    <ul>
+                                        <li>text_length. The raw number of characters. The idea is that longer text have a harder time to reach a large audience. This is calculated using standard python.</li>
+                                        <li>punctuation. This is the ratio between the raw text and the clean text. The idea is that it is a rough measure for the length of individual phrases. Longer phrase length makes an article harder to read and therefore
+                                            harder to spread.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p>In the calibration step confidence intervals were calculated using the database of bywire (150k articles from various professional new services) including for each feature only those articles where valid data was available.
+                                These confidence intervals are then used to construct a mapping to map all features to the interval [0, 1] and to have a non-zero slope in the areas of interest. These confidence intervals are calculated for each platform
+                                and for all data. This was done as some features are highly platform dependend (e.g. a median of 1900 characters per article makes no sence for twitter), the total data values are a fallback when no or little data is available
+                                for a platform. The advantage is that in this way we don't need to recalculate the features when more data becomes available and we can change the mapping without changing the underlying features.</p>
+                            <h2>
+                                <a id="user-content-endpoints" class="anchor" href="https://github.com/Bywire-News-Official/bywire-online-fake-news-ai-ann#endpoints" aria-hidden="true"></a>Endpoints</h2>
+                            <p>The server is implemented as an rest-api. However since analysis might take a while and in order to allow asynchonous processing of text we introduced endpoints to post an article and an endpoint to query whether the article
+                                was processed and the results are ready. Additionally for convenients of the developers there are endpoints to recalibrate parameters, models and to recalculate scores. Due to a lack of time no pacing restrictions were
+                                implemented, but it would be high on our priorities list to not allow querying the results, or submitting too many requests too often. However there is code in place to submit a request only once and if a text or ipfs hash
+                                was already submitted it's results are retrieved from the database instead of being recalculated again.</p>
+                            <ul>
+                                <li>/analyze/text - Submits an article to the server
+                                    <ul>
+                                        <li>input: {"content": "Text Goes Here", "title": "Title of the article", "author": "Author of the article", "publisher": "Publisher of the article" "platform": "Platform that published the article"}</li>
+                                        <li>output: {"id": "id to identify request", "new": true}</li>
+                                    </ul>
+                                </li>
+                                <li>/analyze/ipfs - Submits an ipfs hash to the server. The corresponding document is retrieved.
+                                    <ul>
+                                        <li>input: {"ipfs-hash": "IPFS hash"} *output: {"id": "id to identify request", "new": true}</li>
+                                    </ul>
+                                </li>
+                                <li>/analyze/flag - Flags an article as fake news
+                                    <ul>
+                                        <li>input: {"id": "id identifying the article", "is_expert": "identifies if the user flagging the article was a regular reader or an expert", "strength": "flags how fake the news is: 100 is super fake, -100 is very
+                                            real"}
+                                        </li>
+                                        <li>output {"status": "Status of request", "done": true if done}</li>
+                                    </ul>
+                                </li>
+                                <li>/analyze/query - Queries the status of a request using it's id.
+                                    <ul>
+                                        <li>input: {"id": "id identifying the article"}</li>
+                                        <li>ouptut: {"id": "id to identify request", "status": "Status of processing the request", "done": "Whether the reuqest was parsed.", "data": json object containing the trust scores, "text": "if the request was from
+                                            ipfs the ipfs text is returned"}</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p>The following are very much for development purposes.</p>
+                            <ul>
+                                <li>/parameters/calibrate - Calculates the scaling factors and trains the ann.
+                                    <ul>
+                                        <li>input: {}</li>
+                                    </ul>
+                                </li>
+                                <li>/parameters/clean - Removes old models and scores from the database
+                                    <ul>
+                                        <li>input: {}</li>
+                                    </ul>
+                                </li>
+                                <li>/parameters/recalculate - Recalculates the feature set.
+                                    <ul>
+                                        <li>input: {}</li>
+                                    </ul>
+                                </li>
+                                <li>/brew/coffee - Makes it rfc2324 compliant</li>
+                            </ul>
+                            <h2>
+                                <a id="user-content-output" class="anchor" href="https://github.com/Bywire-News-Official/bywire-online-fake-news-ai-ann#output" aria-hidden="true"></a>Output</h2>
+                            <p>{"trust_score": 99, "sentiment_score": 80, "layout_score": 100, "complexity_score": 100, "divergence_score": 100, "platform_score": 100, "author_score": 100, "reasons": ["Provokes Anger"]}</p>
+                            <h2>
+                                <a id="user-content-team" class="anchor" href="https://github.com/Bywire-News-Official/bywire-online-fake-news-ai-ann#team" aria-hidden="true"></a>Team</h2>
+                            <p>Jetze Sikkema (Implementation, Algorithm Development &amp; Prosecco Programming) Michael O'Sullivan (Frontend &amp; Drinking Beer with Fried Chicken on the side)</p>
+                            <h2>
+                                <a id="user-content-examples" class="anchor" href="https://github.com/Bywire-News-Official/bywire-online-fake-news-ai-ann#examples" aria-hidden="true"></a>Examples</h2>
+                            <p>Here are some examples of fake news stories and real news stories. The ipfs hashes you can use to load the stories into the Bywire Disinformation Detector are added. The fake news stories were the first ones to appear on a
+                                google search for fake news. The real news stories were the first stories that appeared in the guardian and bbc on the 18th of June. However we expect the algorithm to not always work this good as these were our first trials.</p>
+                            <ul>
+                                <li>
+                                    <p>Fake News</p>
+                                    <ul>
+                                        <li>"Pope Franciscus endorses Donald trump". **Bywire Trust 1 - ipfs: **. A discussion of this article can be found&nbsp;<a href="https://www.buzzfeednews.com/article/craigsilverman/the-strangest-fake-news-empire" rel="nofollow">here</a>&nbsp;and&nbsp;
+                                            <a href="https://www.snopes.com/fact-check/pope-francis-donald-trump-endorsement/" rel="nofollow">here</a>
+                                        </li>
+                                        <li>"Biden Calls Trump and Supporters &ldquo;Dregs of Society&rdquo;". **Bywire Trust: 22 - ipfs: . The aricle can be found&nbsp;<a href="https://twincitiesbusinessradio.com/content/all/biden-calls-trump-and-supporters-dregs-of-society"
+                                                rel="nofollow">here</a></li>
+                                        <li>"Nancy Pelosi&rsquo;s Son Was Exec At Gas Company That Did Business In Ukraine". **Bywire Trust: 14 - ipfs: **</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <p>Real News</p>
+                                    <ul>
+                                        <li>Juneteenth: After decades, Opal Lee finally gets her day off. **Bywire Trust: 76 - ipfs: **. The article can be found&nbsp;<a href="https://www.bbc.com/news/world-us-canada-57536944" rel="nofollow">here</a></li>
+                                        <li>HSBC offers sub-1% mortgage as interest rate war intensifies. **Bywire Trust: 86 - ipfs: **. The article can be found&nbsp;<a href="https://www.theguardian.com/money/2021/jun/18/hsbc-mortgage-interest-rate-banks-building-societies-house-prices"
+                                                rel="nofollow">here</a></li>
+                                        <li>Praise and condemnation for Iran's new hardline president. **Bywire Trust: 61 - ipfs **. The article can be found&nbsp;<a href="https://www.reuters.com/world/middle-east/praise-disdain-irans-new-hardline-president-2021-06-19/"
+                                                rel="nofollow">here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+
+
+
+                            <p>HOW IT WORKS
+                            </p>
+                            <p>This is a demo site as a prototype for fake news detection using expert ai.
+                            </p>
+                            <p>An article can be uploaded through this site is converted into a Feature vector using well established criteria [1] for fake news.
+                            </p>
+                            <p>
+                                <small> 1) Usareza Zafrani Xinyi Zhou. “A Survey of Fake News:Fundamental Theories, Detection Methods, and Opportunities”. In: Arxiv 1911.00643 (2020). url: <a href="https://arxiv.org/abs/1812.00315" target="#">https://arxiv.org/abs/1812.00315</a>.
+			      </small>
+                            </p>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </main>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+-->
+    <!-- Option 2: Separate Popper and Bootstrap JS 
+-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3/dist/chart.min.js"></script>
+
+
+
+
+    <script>
+        //Using jQuery for a quick rough word count, however this needs to be improved as there is a spacing bug, need to only count each space once, might be worth dropping jquer and just using js
+        $('#inputNewsArticle').on('keyup', function() {
+		
+	    document.getElementById("inputNewsArticle").style.color="black";
+            var count = $('#inputNewsArticle').val().trim().split(' ');
+            $('#wordCount').text(count.length);
+        });
+
+    </script>
+
+
+    <script>
+
+      function submit_flag() {
+	  FakeNewsAPI.submit_flag()
+      	  alert("Thank you for submitting your feedback!")
+	  scrollTop("")
+
+      }
+      
+      var requests = {}
+      var current_id = ""
+
+      class FakeNewsAPI {
+	  FakeNewsAPI() {
+
+	  }
+        
+	  static show_text(text) {
+	      var el = document.getElementById("inputNewsArticleIPFS")
+	      if (el) {
+		      el.innerHTML = text
+	      }
+	  }
+
+          static check_api(data) {
+              var id = data["id"]
+	      if ("flagged" in data) {
+		  return
+	      }
+		  
+              if ("new" in data && data["new"]) {
+                  current_id = id
+                  requests[id] = {}
+                  //show_progress(false, 0)
+              }
+              if ("done" in data) {
+                  if (data["done"]) {
+                      current_id = id
+                      if (id in requests) {
+                          delete requests[data["id"]]
+			  var postfix = ("text" in data) ? "IPFS" : ""
+                          if ("data" in data) {
+                              show_results(data["data"], postfix)
+                          }
+                          if ("text" in data) {
+                              FakeNewsAPI.show_text(data["text"])
+                          }
+                          //show_progress(true, 100)
+                      }
+                  } else {
+                      setTimeout(FakeNewsAPI.check_api({
+                          "id": id
+                      }), 0.20000);
+                  }
+              } else {
+                  FakeNewsAPI.send_to_api("query", data, FakeNewsAPI.check_api)
+              }
+          }
+
+          static submit_flag(strength = 100.0) {
+              if (current_id === "") {
+                  return
+              }
+              var data = {
+                  "id": current_id,
+                  "is_expert": false,
+                  "strength": strength
+              }
+              FakeNewsAPI.send_to_api("flag", data, FakeNewsAPI.check_api)
+          }
+
+          static submit_ipfs(hash) {
+              var data = {
+                  "ipfs_hash": hash
+              }
+              FakeNewsAPI.send_to_api("ipfs", data, FakeNewsAPI.check_api)
+          }
+
+          static submit_text(content, title, author, publisher) {
+              var data = {
+                  "content": title+"\n\n"+content,
+                  "title": title,
+                  "platform": "prototype",
+                  "author": author,
+                  "publisher": publisher
+              }
+              FakeNewsAPI.send_to_api("text", data, FakeNewsAPI.check_api)
+          }
+
+
+          static send_to_api(method, data, callback) {
+              var xmlhttp = new XMLHttpRequest();
+              xmlhttp.onreadystatechange = function() {
+                  if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                      //try {
+                      var text = xmlhttp.responseText.replace(/(?:\\[rn])+/g, '')
+                      text = text.replace(/\\"/g, '"')
+                      text = text.replace(/^"/g, '')
+                      text = text.replace(/"$/g, '')
+                      text = text.replace(/\\n/g, '')
+                      var json = JSON.parse(text);
+                      callback(json)
+                      //} catch {
+                      //    alert(xmlhttp.responseText)
+                      //}
+                  }
+              };
+              var target = "request.php"
+              //xmlhttp.setRequestHeader("Content-Type", "application/json");
+              var url = "action=" + encodeURIComponent(method)
+              url += "&data=" + encodeURIComponent(JSON.stringify(data))
+              xmlhttp.open("POST", target, true);
+              xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              //xmlhttp.setRequestHeader('Access-Control-Allow-Headers', '*');
+              //xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
+              //var request_data = JSON.stringify(request);
+              xmlhttp.send(url)
+	      
+          }
+      }
+
+
+
+
+
+
+
+      
+        function show_progress(done, progress) {
+            var status_str = (done) ? "Analyzing..." : "Ready."
+            document.getElementById("progress-status").innerHTML = status_str;
+
+            document.getElementById("progress-bar").value = progress
+            document.getElementById("progress-bar").innerHTML = progress + " %"
+        }
+
+
+        const resultsTemp = {
+            "id": "b'e504826c5359763bfcfa6c51d9908becdbdd09d578b9e63f46a543e0c9d0b97de091e16e2c00e0f266ab8b46a553fef62d0217568ab400fd31b4511853e9d0c5'",
+            "param_version": 5,
+            "trust_score": 65,
+            "sentiment_score": 45,
+            "divergency_score": 71,
+            "layout_score": 100,
+            "complexity_score": 50,
+            "platform_score": 100,
+            "author_score": 100,
+            "reasons": [
+                "The tone is euphoric/depressed",
+                "Suspicious Word Use"
+            ]
+        };
+
+      function show_results(results, postfix) {
+	  let resultsTemp = results
+         //Labels for the HTML output of each parameter. Wanted to use varaibles to future proof changes. 
+	  const labels = {"trust":   "Trust: ",
+			  "sentiment":  "Sentiment: ",
+			  "layout":     "Layout: ",
+			  "divergency": "Divergence: ",
+			  "complexity": "Complexity: ",
+			  "author":     "Author: ",
+			  "platform":   "Publisher: "
+			 }
+          const space = " ";
+          const genuine = "Genuine!";
+          const fake = "WARNING FAKE NEWS!";
+          const trustedNews = '<div class="alert alert-success d-flex align-items-center" role="alert">' + '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>' + '<div>' + "<strong>" + genuine + "</strong>" + "</div>" + "</div>";
+          const caustionNews = '<div class="alert alert-danger d-flex align-items-center" role="alert">' + '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>' + '<div>' + "<strong>" + fake + "</strong>" + "</div>" + "</div>";
+
+	  
+          //dummy variable to state that this seach, the object above has been flagged as being present, and fake, on the bywire fake or not database. I would have added it tot he object resultsTemp however it would mess up my array slicing
+          let isStoredFakeNewsDatabase = results["trust_score"] <= 50;
+
+          const genuineMessage1 = "Although this article has been analysed as likely to be genuine, there is more information below which you may find helpful in assisting you to come to your own conclusion";
+          const fakeMessage1 = "This article is highly unlikely to be genuine, and it could be entirely fake. Below are a set of parameters which highlight how we came to this consideration.";
+
+          const euphoria_label_message = "The article tone is overly emotional. Professional journalists will not typically use overly emotive language, unless the article is opinion based. This could be an indication of inauthenticity, however, caution this advice; the article may be truthful, but the writer could be partisan, with their style of writing and choice of langue flagging this warning. ";
+          const punctuation_label_message = "This article may be overusing punctuation; therefore, it has been flagged as suspicious. Professional news organisations tend to have style guides which prohibit the incorrect use of punctuation. This may be a sign of low production quality, which could mean this article is fake. ";
+          const sentiment_label_message = "This article has been flagged as containing suspicious emotional characteristics. This may include the overuse of one specific emotion, which is rarely done in professional news publications, or it could mean that the author is deliberately trying to illicit an emotional response. If this is the case, then take caution, news reporting should never attempt to overly induce an emotional response from its readers. ";
+          const article_length_length_label_message = "The article length is shorter than you would expect from a news organisation. However, please note that this may be intentional, and is often used by professional news outlets when a news story is breaking. This is the most likely warning to give a false positive. However, shorter than expected article lengths are often found in fake news. ";
+          const complexity_word_length_label_message = "The complexity of the language used in this article seems to be overly simplistic. News stories that make bold claims would rarely provide little supporting information if those claims are genuine. Therefore, if this story is making big, bold claims and is more than a few hours old, and has been written with little substance, then this is almost certainly fake news. ";
+          const complexity_duplication_label_message = "There appears to be an overuse of repetition in this article. A classic technique of fake news is to bulk out an article, to make it look more genuine, by effectively repeating the same thing over and over, with the use of different words and sentences. ";
+          const complexity_complexity_label_message = "This article has been flagged as containing suspicious words. Professional news outlets are unlikely to include these words in their reporting, therefore this may be fake. However, please caution, as this may have been flagged out of context. Additional, quotes may have been mislabelled by the author, and therefore may have been incorrectly flagged in this warning. ";
+          const divergency_label_message = "The Bywire AI fake news detective is powered by two algorithms. The first is the Bywire algorithm, and the second has been kindly provided by ExpertAI. Should both these algorithms be unable to find a consensus, this warning will be flagged. Please take additional caution with this article as our tools have been unable to reach a confident consensus, i.e., we just do not know if this is genuine or not, therefore we have flagged it for human intervention. ";
+
+          const mapping = {
+              "The tone is euphoric/depressed": euphoria_label_message,
+              "Suspicious Puntuation": punctuation_label_message,
+              "Suspicious Emotional Response": sentiment_label_message,
+              "Article is shorter than expected": article_length_length_label_message,
+              "Simlistic Word Use": complexity_word_length_label_message,
+              "Repetitive Word Use": complexity_duplication_label_message,
+              "Suspicious Word Use": complexity_complexity_label_message,
+              "Suspicious Incompatability between algorithms": divergency_label_message
+          };
+
+          //document.write(results["reasons"].join(' '));
+          let lengthOfReasons = results["reasons"].length;
+
+          //This will print out the correct messages while mapping them
+          let reasonMessages = [];
+
+          results["reasons"].forEach(item => {
+              let newReason = mapping[item];
+              reasonMessages.push("<p>" + newReason + "</p>");
+          });
+
+          reasonMessages = reasonMessages.join(' '); // using join() method.
+          //print out the final error messages
+          document.getElementById("messageResultsAnal"+postfix).innerHTML = reasonMessages;
+	  
+      
+
+          // API data in still needs to be done, but this ensures the outputs are all working. 
+
+          //Conversting my JS object into a Array to utilse those features (namely for the out of score)
+          const maxScoreArray = (Object.keys(resultsTemp));
+
+          //Here I am taking the total number of items in the array and multiplying them by 100 to give us our percent score. 
+          const maxScore = 100
+      
+          //Calculating the total trust score, based on the paraments from the results object.
+
+          //This is the basic method to print out the results on the page from each child element of the results object. This could be changed into a loop
+
+          //I have retrofitted these graphs at this point in the dom so they can populate the gauges, before these values are removed from the array for displaying purposes. Should rethink this, change the headers of each gauge into the array items, headings (keys) & values.
+          //This will also act as a checksum for the guage output, althopugh it has been manually checked in the console
+
+          //Sentiment Gauge
+          var sentimentGauge = new Gauge(document.getElementById("gauge-sentiment"+postfix));
+          sentimentGauge.value(results["sentiment_score"] / 100);
+          document.getElementById("gauge-sentiment-label"+postfix).innerHTML = results["sentiment_score"]
+          //Author Gauge
+          var authorGauge = new Gauge(document.getElementById("gauge-author"+postfix));
+          authorGauge.value(results["author_score"] / 100);
+          document.getElementById("gauge-author-label"+postfix).innerHTML = results["author_score"]
+          //Publisher Gauge
+          var publisherGauge = new Gauge(document.getElementById("gauge-publishers"+postfix));
+          publisherGauge.value(results["platform_score"] / 100);
+          document.getElementById("gauge-publisher-label"+postfix).innerHTML = results["platform_score"]
+	  
+	  
+          //setting a custom variable for the bar chart results to include different entires
+          let resultsForBarGraph = [results["sentiment_score"],
+				    results["layout_score"],
+				    results["divergency_score"],
+				    results["complexity_score"]]
+          let labelsForBarGraph =  [labels["sentiment"],
+				    labels["layout"],
+				    labels["divergency"],
+				    labels["complexity"]]
+	  
+
+          //this creates a new lists and stores the UL html
+          let list = document.getElementById("trust_index_results"+postfix);
+
+          //This is the Gauge for the Fake or Genuine graph 
+          var gauge = new Gauge(document.getElementById("gauge"+postfix));
+          //I am just dividing by 100 to turn it into a score out of 0-1 (percent)
+          gauge.value(results["trust_score"] / 100);
+
+
+
+
+
+          //Here we are relabelling each value in our array with the correct labels. This is much better than creating the html elements. Again, I should now put the labels into an object or array and loop over
+
+          let trustIndexNew = [labels["sentiment"] + results["sentiment_score"],
+			       labels["layout"] + results["layout_score"],
+			       labels["divergency"] + results["divergency_score"],
+			       labels["complexity"] + results["complexity_score"]]
+
+          //this functions adds in the entries of the key value pairs from our new trust index array new which temp stores the results 
+          trustIndexNew.forEach((item) => {
+              let li = document.createElement("li");
+              li.innerText = item;
+              list.appendChild(li);
+	      
+          })
+
+
+          //Display the total trust score, and the total amount out of, which is a variable based on inputs, commented above.
+          document.getElementById("trust_index"+postfix).innerHTML = results["trust_score"] + space + "out of" + space + maxScore;
+
+
+          //Converting the Results Objects into a values array, to use in the charts
+          const resultsValues = (Object.values(resultsTemp));
+
+          //CHART.JS
+          let container = document.getElementById('trustIndexContainer'+postfix)
+	  
+	  $('#trustIndexChart'+postfix).remove(); // this is my <canvas> element
+	  $('#trustIndexContainer'+postfix).append('<canvas id="trustIndexChart'+postfix+'" width="100%" height="50%"></canvas>')
+	  
+          let ctx = document.getElementById('trustIndexChart'+postfix)
+          var myChart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                  labels: labelsForBarGraph,
+                  datasets: [{
+                      label: 'Trust Index out of 100',
+                      data: resultsForBarGraph,
+                      backgroundColor: [
+                          'rgba(255, 99, 132, 0.8)',
+                          'rgba(54, 162, 235, 0.8)',
+                          'rgba(255, 206, 86, 0.8)',
+                          'rgba(255, 26, 195, 0.8)',
+                          'rgba(75, 192, 192, 0.8)',
+                          'rgba(153, 102, 255, 0.8)',
+                          'rgba(255, 159, 64, 0.8)'
+                      ],
+                      borderColor: [
+                          'rgba(255, 99, 132, 1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(255, 206, 86, 1)',
+                          'rgba(255, 206, 86, 1)',
+                          'rgba(75, 192, 192, 1)',
+                          'rgba(153, 102, 255, 1)',
+                          'rgba(255, 159, 64, 1)'
+                      ],
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  indexAxis: 'y',
+                  // Elements options apply to all of the options unless overridden in a dataset
+                  // In this case, we are setting the border of each horizontal bar to be 2px wide
+                  elements: {
+                      bar: {
+                          borderWidth: 2,
+                      }
+                  },
+                  responsive: true,
+                  plugins: {
+                      legend: {
+                          position: 'right',
+                      },
+                      title: {
+                          display: true,
+                          text: 'Trust Index Scores'
+                      }
+                  },
+                  scales: {
+                      y: {
+                          beginAtZero: true
+                      }
+                  }
+              }
+          });
+
+
+
+          //sentiment pie chart 
+          const config = {
+              type: 'pie',
+              data: [45, 71, 100, 50, 100, 100],
+              options: {
+                  responsive: true,
+                  plugins: {
+                      legend: {
+                          position: 'top',
+                      },
+                      title: {
+                          display: true,
+                          text: 'Chart.js Pie Chart'
+                      }
+                  }
+              },
+          };
+	  
+
+
+
+
+          //This handles the inverse selection for flagging purpose, if the article is genunie, we should ask if it is fake, and the inverse
+          let flag = "";
+          const flagFake = "Fake";
+          const flagGenuine = "Genuine";
+          let openingAnalysisMessage = "";
+
+          // This function checks to see if the results are greater than 500m if so then returns trusted var if not, then untrusted varaible. This can now be broadened out
+          function displayResults(news) {
+              let resultsInternal;
+              if (news > 50) {
+                  resultsInternal = trustedNews;
+                  flag = flagFake;
+                  openingAnalysisMessage = genuineMessage1;
+              } else {
+                  resultsInternal = caustionNews;
+                  flag = flagGenuine;
+                  openingAnalysisMessage = fakeMessage1;
+              }
+              return resultsInternal
+          };
+      
+
+
+
+          document.getElementById("trustedOrNot"+postfix).innerHTML = displayResults(resultsTemp["trust_score"]);
+	  
+          document.getElementById("flagAsWhat"+postfix).innerHTML = flag;
+
+	  
+	  function showOpeningReasonsMessage() {
+              if (lengthOfReasons > 0) {
+		  document.getElementById("openingAnalysisMessage"+postfix).innerHTML = openingAnalysisMessage;
+              }
+	  }
+	  
+	  showOpeningReasonsMessage();
+          function fakeNewsDatabase() {
+              if (isStoredFakeNewsDatabase == true) {
+                  document.getElementById("warningFlagFakeDatabaseTrue"+postfix).innerHTML = '<div class="alert alert-danger d-flex align-items-center" role="alert">' + '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg> Warning, this article has been discovered on the Bywire fake news database, and is listed as FAKE. </div>'
+              }
+          }
+      
+	  fakeNewsDatabase();
+      }
+      
+      //if the article has been discovered on the bywire fake news database, boolean near the resultsTemp, then this warning will display to the read
+
+      const results = {
+          trust_score: 100,
+          sentiment_score: 100,
+          layout_score: 100,
+          divergency_score: 100,
+          complexity_score: 100,
+          author_score: 100,
+          platform_score: 100
+      };
+      
+      //this functions wraps jquery into js and then removes the hide class if present - displays the results
+        function showHide() {
+            $(".hide").toggleClass("hide");
+        }
+
+        //As we need to show the progress bar first, we have a dedicated function for this
+        function showHideProgress() {
+            $(".hide-progress").toggleClass("hide-progress");
+        }
+
+
+
+
+
+        //New Fake or Not search input Object constructor
+
+        console.log(inputTitle)
+
+
+
+      // This is the progress bar js. It also fires the show hide functions and the scrolling function, which isn't quite right yet.
+      var i = 0;
+      var api = new FakeNewsAPI()
+
+        function submit_text() {
+	    let progressTemp = document.getElementById("myProgress");
+            const inputTitle = document.getElementById("inputTitle").value;
+            const inputWebsite = document.getElementById("inputWebsite").value;
+            const inputAuthor = document.getElementById("inputAuthor").value;
+            const inputPublisher = document.getElementById("inputPublisher").value;
+            const inputNewsArticle = document.getElementById("inputNewsArticle").value;
+            function strip(string) {
+		return string.replace(/^\s+|\s+$/g, '');
+            }
+	    const emptyMessage = "Please enter an article"
+	    if (strip(inputNewsArticle) === "" || strip(inputNewsArticle) === emptyMessage) {
+		document.getElementById("inputNewsArticle").value = emptyMessage
+		document.getElementById("inputNewsArticle").style.color="red";
+		return
+	    }
+
+	    
+            function Fakeornot(title, website, author, publisher, content) {
+                this.searchTitle = title;
+                this.searchWebsite = website;
+                this.searchAuthor = author;
+                this.searchPublisher = publisher;
+                this.searchContent = content;
+            }
+	    
+            const newSeach = new Fakeornot(inputTitle, inputWebsite, inputAuthor, inputPublisher, inputNewsArticle);
+	    FakeNewsAPI.submit_text(inputNewsArticle, inputTitle, inputAuthor, inputPublisher)
+
+            console.log(newSeach)
+
+            document.getElementById("inputArticleTitleOutput").innerHTML = newSeach.searchTitle;
+            document.getElementById("inputArticleAuthorOutput").innerHTML = newSeach.searchAuthor;
+            document.getElementById("inputArticlePublisherOutput").innerHTML = newSeach.searchPublisher;
+
+
+            document.getElementById("authorNameGraph").innerHTML = newSeach.searchAuthor;
+            document.getElementById("publisherNameGraph").innerHTML = newSeach.searchPublisher;
+
+
+            showHideProgress();
+            progressTemp.scrollIntoView();
+            if (i == 0) {
+                i = 1;
+                var elem = document.getElementById("myBar");
+                var width = 1;
+                var id = setInterval(frame, 5);
+
+                function frame() {
+                    if (width >= 100) {
+                        clearInterval(id);
+                        i = 0;
+                        showHide();
+                        scrollBottom("");
+                    } else {
+                        width++;
+                        elem.style.width = width + "%";
+                    }
+                }
+            }
+        };
+
+      function submit_ipfs() {
+	  var hash = document.getElementById("ipfs-input").value
+	  if (hash === "") {
+	      return
+	  }
+	  let progressTemp = document.getElementById("myProgressIPFS");
+	  FakeNewsAPI.submit_ipfs(hash)
+          showHideProgress();
+
+          progressTemp.scrollIntoView();
+          if (i == 0) {
+              i = 1;
+              var elem = document.getElementById("myBarIPFS");
+              var width = 1;
+              var id = setInterval(frameIPFS, 5);
+
+              function frameIPFS() {
+                  if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      showHide();
+                      scrollBottom("IPFS");
+                  } else {
+                      width++;
+                      elem.style.width = width + "%";
+                  }
+                }
+            }
+      };
+
+      var examples = [];
+
+      $('#simDataListIPFS').change(function() {
+	  //var key = $(this).index()-1
+	  var val = $(this).val()
+	  for (var key in examples) {
+	      if (examples[key]["key"] === val) {
+		  document.getElementById("ipfs-input").value = examples[key]["ipfs"]
+		  if (examples[key]["ipfs"]) {
+		      submit_ipfs()
+		  }
+	      }
+	  }
+      });
+      $('#simDataList').change(function() {
+	  //var key = $(this).index()-1
+	  var val = $(this).val()
+	  for (var key in examples) {
+	      if (examples[key]["key"] === val) {
+		  document.getElementById("inputTitle").value       = examples[key]["title"];
+		  document.getElementById("inputWebsite").value     = examples[key]["url"];
+		  document.getElementById("inputAuthor").value      = examples[key]["author"];
+		  document.getElementById("inputPublisher").value   = examples[key]["publisher"];
+		  document.getElementById("inputNewsArticle").value = examples[key]["article_content"];
+		  var count = $('#inputNewsArticle').val().trim().split(' ');
+		  $('#wordCount').text(count.length);
+		  submit_text();
+	      }
+	  }
+	  
+      });
+
+      function show_examples(postfix) {
+	  var el = document.getElementById("datalistOptions"+postfix)
+	  for (key in  examples) {
+	      let option = document.createElement("option");
+	      let prefix = (examples[key]["fake"]) ? "FAKE: " : "TRUE: ";
+	      examples[key]["key"] = prefix+examples[key]["title"]
+	      option.value         = prefix+examples[key]["title"]
+	      //option.onchange = 'show_example("'+key+'");'
+	      option.innerHTML = prefix+examples[key]["title"]
+	      el.appendChild(option)
+	  }
+
+
+      }
+      
+
+
+      
+      $.ajax({
+	  type: "POST",
+	  url: "examples.php",
+	  data: [],
+	  success: function (x)  {
+	      examples = JSON.parse(x);
+	      show_examples("")
+	  }
+      });
+
+      
+    </script>
+
+
+    <script>
+      function scrollTop(postfix) {
+            setTimeout(function() {
+                //window.scrollTo(0, document.body.scrollHeight);
+                let element = document.getElementById("top")
+                element.scrollIntoView();
+            },
+                       200
+		      )
+        }
+
+
+      function scrollBottom(postfix) {
+            setTimeout(function() {
+                    //window.scrollTo(0, document.body.scrollHeight);
+                    let element = document.getElementById("results"+postfix);
+                    element.scrollIntoView();
+                },
+                200
+            )
+        }
+    </script>
+
+
+</body>
+
+</html>
