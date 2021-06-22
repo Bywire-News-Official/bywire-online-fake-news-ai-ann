@@ -339,7 +339,7 @@
                             <div id="messageResultsAnal">
 
                             </div>
-                            <p><svg class="bi me-2" width="16" height="16"><use xlink:href="#flag-fill"/></svg>Warning, found on fake database</p>
+                            <p id="warningFlagFakeDatabaseTrue"></p>
                             <p class="lead"><span id="inputArticleAuthorOutput"></span> | <span id="inputArticlePublisherOutput"></span> </p>
 
 
@@ -810,8 +810,8 @@
                 "Suspicious Word Use"
             ]
         };
-
-
+        //dummy variable to state that this seach, the object above has been flagged as being present, and fake, on the bywire fake or not database. I would have added it tot he object resultsTemp however it would mess up my array slicing
+        let isStoredFakeNewsDatabase = true;
 
         const genuineMessage1 = "Although this article has been analysed as likely genuine, there [is one warning/are a few warnings] which you should be aware of.";
         const fakeMessage1 = "This article is highly unlikely to be genuine, and it could be entirely fake. Below are a set of parameters which highlight how we came to this consideration.";
@@ -840,6 +840,7 @@
         //document.write(resultsTemp["reasons"].join(' '));
 
         lengthOfReasons = resultsTemp["reasons"].length;
+
 
 
 
@@ -1086,6 +1087,15 @@
 
         showOpeningReasonsMessage();
 
+        //if the article has been discovered on the bywire fake news database, boolean near the resultsTemp, then this warning will display to the read
+        function fakeNewsDatabase() {
+            if (isStoredFakeNewsDatabase == true) {
+                document.getElementById("warningFlagFakeDatabaseTrue").innerHTML = '<div class="alert alert-danger d-flex align-items-center" role="alert">' + '<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg> Warning, this article has been discovered on the Bywire fake news database, and is listed and FAKE. </div>'
+            }
+        }
+
+        fakeNewsDatabase();
+
         const results = {
             trust_score: 100,
             sentiment_score: 100,
@@ -1145,6 +1155,9 @@
 
             document.getElementById("authorNameGraph").innerHTML = newSeach.searchAuthor;
             document.getElementById("publisherNameGraph").innerHTML = newSeach.searchPublisher;
+
+
+
 
 
             showHideProgress();
